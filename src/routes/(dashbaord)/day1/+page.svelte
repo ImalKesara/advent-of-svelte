@@ -16,8 +16,10 @@
 		loadPersons();
 		loadniceChilds();
 		loadnaughtChilds();
-		loadniceChildName();
-		getNicestAndNaughtchild();
+		getSmallestandLargest();
+		// loadniceChildName();
+		// getNicestAndNaughtchild();
+		getSmallestandLargest();
 	});
 
 	//gets all the good childrens
@@ -37,13 +39,29 @@
 		});
 	};
 
-	const loadniceChildName = () => {
-		$persons = $persons.sort((a, b) => a.tally - b.tally);
-	};
+	// const loadniceChildName = () => {
+	// 	$persons = $persons.sort((a, b) => a.tally - b.tally);
+	// };
 
-	const getNicestAndNaughtchild = () => {
-		nicestChild = $persons[$persons.length - 1].name;
-		naughtChild = $persons[0].name;
+	// const getNicestAndNaughtchild = () => {
+	// 	nicestChild = $persons[$persons.length - 1].name;
+	// 	naughtChild = $persons[0].name;
+	// };
+
+	const getSmallestandLargest = () => {
+		let smallest: number = $persons[1].tally;
+		let largest: number = $persons[1].tally;
+
+		$persons.forEach((person) => {
+			if (person.tally >= largest) {
+				largest = person.tally;
+				nicestChild = person.name;
+			}
+			if (person.tally <= smallest) {
+				smallest = person.tally;
+				naughtChild = person.name;
+			}
+		});
 	};
 </script>
 
@@ -115,7 +133,6 @@
 			<td class="p-3">Name</td>
 			<td class="p-3">Tally</td>
 			<td class="p-3">Tag</td>
-			<td class="p-3">Remove</td>
 		</tr>
 		{#each $persons as person}
 			<tr class="border-1 border-bgrey">
