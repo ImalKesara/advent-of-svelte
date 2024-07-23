@@ -5,6 +5,7 @@
 	import Totallogo from '$lib/components/Icon/Totallogo.svelte';
 	import { persons, loadPersons } from '$lib/stores/dayoneStore';
 	import { onMount } from 'svelte';
+	import ChildrenRows from './ChildrenRows.svelte';
 
 	let niceChildren: number = 0;
 	let naughtyChildren: number = 0;
@@ -102,4 +103,23 @@
 			<span class=" block text-sm text-gray-500">Reset on Reload</span>
 		</div>
 	</div>
+</div>
+
+<!-- table -->
+<div class=" m-auto my-5 max-w-7xl">
+	<!-- filter and add child button -->
+	<div></div>
+	<!-- Rows -->
+	<table class=" w-full">
+		<tr class="border-1 border-bgrey">
+			<td class="p-3">Name</td>
+			<td class="p-3">Tally</td>
+			<td class="p-3">Tag</td>
+		</tr>
+		{#each $persons as person}
+			<tr class="border-1 border-bgrey">
+				<ChildrenRows {person} />
+			</tr>
+		{/each}
+	</table>
 </div>
