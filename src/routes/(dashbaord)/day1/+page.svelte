@@ -115,6 +115,7 @@
 			<td class="p-3">Name</td>
 			<td class="p-3">Tally</td>
 			<td class="p-3">Tag</td>
+			<td class="p-3">Remove</td>
 		</tr>
 		{#each $persons as person}
 			<tr class="border-1 border-bgrey">

@@ -1,7 +1,11 @@
 <script lang="ts">
+	import Delete from '$lib/components/Icon/Delete.svelte';
 	export let person;
 </script>
 
 <td class=" p-3">{person.name}</td>
 <td class=" p-3">{person.tally}</td>
 <td class=" p-3">{person.tally > 0 ? 'Nice' : ' Naught'}</td>
+<td class="  p-3">
+	<Delete />
+</td>
