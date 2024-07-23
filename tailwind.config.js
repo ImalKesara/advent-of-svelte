@@ -18,7 +18,8 @@ export default {
 				gridTabs: 'repeat(4,1fr)'
 			},
 			maxWidth: {
-				'8xl': '84rem'
+				'8xl': '86rem',
+				'7xl': '84rem'
 			},
 			borderWidth: {
 				1: '0.5px'

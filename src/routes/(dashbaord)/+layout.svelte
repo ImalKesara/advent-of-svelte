@@ -2,7 +2,11 @@
 	import Navbar from '$lib/components/Navbar.svelte';
 </script>
 
-<div class="text-white h-screen mt-2">
+<svelte:head>
+	<title>Advent Of Svelte | Day 1</title>
+</svelte:head>
+
+<div class="m-2 h-screen text-white">
 	<Navbar />
 	<main>
 		<slot />

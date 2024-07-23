@@ -1,7 +1,105 @@
-<div>
-	Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda consequatur atque non. Optio
-	aliquam blanditiis illo quis dolor quisquam fugit, laudantium vitae vel unde dolores delectus
-	reiciendis exercitationem cum alias? Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-	Explicabo doloremque veritatis dolore, quaerat libero laudantium nihil illum, culpa fuga excepturi
-	maxime dolores sunt. Eveniet repellendus, voluptates assumenda beatae dolore impedit.
+<script lang="ts">
+	import Addbyme from '$lib/components/Icon/Addbyme.svelte';
+	import NaughtChild from '$lib/components/Icon/NaughtChild.svelte';
+	import Nicechild from '$lib/components/Icon/Nicechild.svelte';
+	import Totallogo from '$lib/components/Icon/Totallogo.svelte';
+	import { persons, loadPersons } from '$lib/stores/dayoneStore';
+	import { onMount } from 'svelte';
+
+	let niceChildren: number = 0;
+	let naughtyChildren: number = 0;
+	let nicestChild: string;
+	let naughtChild: string;
+
+	onMount(() => {
+		loadPersons();
+		loadniceChilds();
+		loadnaughtChilds();
+		loadniceChildName();
+		getNicestAndNaughtchild();
+	});
+
+	//gets all the good childrens
+	const loadniceChilds = () => {
+		$persons.filter((person) => {
+			if (person.tally > 0) {
+				niceChildren++;
+			}
+		});
+	};
+	//gets all the naughty childrens
+	const loadnaughtChilds = () => {
+		$persons.filter((person) => {
+			if (person.tally < 0) {
+				naughtyChildren++;
+			}
+		});
+	};
+
+	const loadniceChildName = () => {
+		$persons = $persons.sort((a, b) => a.tally - b.tally);
+	};
+
+	const getNicestAndNaughtchild = () => {
+		nicestChild = $persons[$persons.length - 1].name;
+		naughtChild = $persons[0].name;
+	};
+</script>
+
+<div class="m-auto mt-10 grid max-w-7xl grid-cols-4 gap-5">
+	<!-- column one -->
+	<div
+		class="grid grid-cols-4 items-center gap-3 rounded-lg border-1 border-bgrey bg-semiBlacked p-5"
+	>
+		<div class=" col-span-3">Total Childs</div>
+		<div class=" col-span-1 flex justify-end">
+			<Totallogo />
+		</div>
+		<div class="col-span-3">
+			<span class="text-3xl"><b>{$persons.length}</b></span>
+			<span class=" block text-sm text-gray-500">Ready for Gifts</span>
+		</div>
+	</div>
+
+	<!-- column two -->
+	<div
+		class="grid grid-cols-4 items-center gap-3 rounded-lg border-1 border-bgrey bg-semiBlacked p-5"
+	>
+		<div class=" col-span-3">Nicest Child</div>
+		<div class=" col-span-1 flex justify-end">
+			<Nicechild />
+		</div>
+		<div class="col-span-3">
+			<span class="text-3xl"><b>{nicestChild}</b></span>
+			<span class=" block text-sm text-gray-500">{niceChildren} are nice childs.</span>
+		</div>
+	</div>
+
+	<!-- colmun three -->
+	<div
+		class="grid grid-cols-4 items-center gap-3 rounded-lg border-1 border-bgrey bg-semiBlacked p-5"
+	>
+		<div class=" col-span-3">Naughtiest Child</div>
+		<div class=" col-span-1 flex justify-end">
+			<NaughtChild />
+		</div>
+		<div class="col-span-3">
+			<span class="text-3xl"><b>{naughtChild}</b></span>
+			<span class=" block text-sm text-gray-500">{naughtyChildren} are naughty childs.</span>
+		</div>
+	</div>
+
+	<!-- column four -->
+	<div
+		class="grid grid-cols-4 items-center gap-3 rounded-lg border-1 border-bgrey bg-semiBlacked p-5"
+	>
+		<div class=" col-span-3">Added by You</div>
+		<div class=" col-span-1 flex justify-end">
+			<Addbyme />
+		</div>
+		<div class="col-span-3">
+			<span class="text-3xl"><b>0</b></span>
+			<span class=" block text-sm text-gray-500">Reset on Reload</span>
+		</div>
+	</div>
 </div>

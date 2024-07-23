@@ -5,7 +5,7 @@
 </script>
 
 <header>
-	<div class="grid max-w-8xl m-auto grid-cols-2 items-center p-5 border-1 border-bgrey rounded-lg">
+	<div class="m-auto grid max-w-8xl grid-cols-2 items-center rounded-lg border-1 border-bgrey p-5">
 		<div class="grid grid-cols-10 items-center">
 			<a class=" col-span-1" href="#"><SvelteLogo width={34} height={34} /></a>
 			<p class=" col-span-7">Advent of svelte</p>

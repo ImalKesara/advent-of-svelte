@@ -1,0 +1,291 @@
+	
+name	"Eliza"
+tally	100
+4	
+name	"Caesar"
+tally	-53
+5	
+name	"Audrey"
+tally	-21
+6	
+name	"Christy"
+tally	-23
+7	
+name	"Ezekiel"
+tally	34
+8	
+name	"Graciela"
+tally	88
+9	
+name	"Kallie"
+tally	70
+10	
+name	"Heaven"
+tally	-38
+11	
+name	"Marley"
+tally	5
+12	
+name	"Connor"
+tally	-11
+13	
+name	"Shad"
+tally	-54
+14	
+name	"Alek"
+tally	7
+15	
+name	"Marco"
+tally	83
+16	
+name	"Haylie"
+tally	-9
+17	
+name	"Keegan"
+tally	-14
+18	
+name	"Brooke"
+tally	88
+19	
+name	"Clotilde"
+tally	56
+20	
+name	"Presley"
+tally	43
+21	
+name	"Vivianne"
+tally	61
+22	
+name	"Elyssa"
+tally	-82
+23	
+name	"Mathilde"
+tally	4
+24	
+name	"Selina"
+tally	73
+25	
+name	"Soledad"
+tally	66
+26	
+name	"Arvel"
+tally	66
+27	
+name	"Alison"
+tally	-46
+28	
+name	"Cecelia"
+tally	-89
+29	
+name	"Shad"
+tally	34
+30	
+name	"Ayden"
+tally	19
+31	
+name	"Helene"
+tally	35
+32	
+name	"Vernie"
+tally	-18
+33	
+name	"Kacie"
+tally	-61
+34	
+name	"Mathias"
+tally	-42
+35	
+name	"Emerson"
+tally	-72
+36	
+name	"Marques"
+tally	57
+37	
+name	"Roberto"
+tally	-18
+38	
+name	"Aida"
+tally	-94
+39	
+name	"Neoma"
+tally	25
+40	
+name	"Yasmin"
+tally	32
+41	
+name	"Nelda"
+tally	-41
+42	
+name	"Dwight"
+tally	-11
+43	
+name	"Patience"
+tally	-56
+44	
+name	"Beatrice"
+tally	-86
+45	
+name	"Isaiah"
+tally	-6
+46	
+name	"Sylvan"
+tally	-81
+47	
+name	"Eldora"
+tally	81
+48	
+name	"Eduardo"
+tally	-76
+49	
+name	"Breana"
+tally	5
+50	
+name	"Aimee"
+tally	-84
+51	
+name	"Mariela"
+tally	84
+52	
+name	"Cory"
+tally	83
+53	
+name	"Dimitri"
+tally	-40
+54	
+name	"Jerad"
+tally	17
+55	
+name	"Amir"
+tally	13
+56	
+name	"Kiley"
+tally	23
+57	
+name	"Caden"
+tally	92
+58	
+name	"Laisha"
+tally	-48
+59	
+name	"Maximus"
+tally	-54
+60	
+name	"Bartholome"
+tally	7
+61	
+name	"Harry"
+tally	90
+62	
+name	"Maud"
+tally	-1
+63	
+name	"Harry"
+tally	8
+64	
+name	"Amaya"
+tally	53
+65	
+name	"Kailey"
+tally	-91
+66	
+name	"Malcolm"
+tally	-72
+67	
+name	"Jordon"
+tally	59
+68	
+name	"Tyrel"
+tally	-95
+69	
+name	"Kyler"
+tally	77
+70	
+name	"Stewart"
+tally	8
+71	
+name	"Brionna"
+tally	-10
+72	
+name	"Broderick"
+tally	79
+73	
+name	"Rafael"
+tally	-25
+74	
+name	"Grant"
+tally	8
+75	
+name	"Casper"
+tally	31
+76	
+name	"Timmy"
+tally	-28
+77	
+name	"Fanny"
+tally	14
+78	
+name	"Nettie"
+tally	28
+79	
+name	"Moises"
+tally	-75
+80	
+name	"Shaun"
+tally	38
+81	
+name	"Lindsay"
+tally	30
+82	
+name	"Nettie"
+tally	-29
+83	
+name	"Fausto"
+tally	53
+84	
+name	"Dominique"
+tally	-29
+85	
+name	"Sonya"
+tally	51
+86	
+name	"Hilbert"
+tally	77
+87	
+name	"Violette"
+tally	-98
+88	
+name	"Malachi"
+tally	0
+89	
+name	"Lilly"
+tally	-86
+90	
+name	"Bethel"
+tally	58
+91	
+name	"Vada"
+tally	-88
+92	
+name	"Israel"
+tally	-29
+93	
+name	"Kolby"
+tally	89
+94	
+name	"Hailey"
+tally	-24
+95	
+name	"Dasia"
+tally	53
+96	
+name	"Stewart"
+tally	55
+97	
+name	"Kiera"
+tally	-40
+98	
+name	"Abdul"
+tally	55
+99	
+name	"Lexus"
+tally	-70
