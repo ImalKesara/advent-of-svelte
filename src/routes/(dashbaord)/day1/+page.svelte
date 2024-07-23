@@ -124,18 +124,18 @@
 </div>
 
 <!-- table -->
-<div class=" m-auto my-5 max-w-7xl">
+<div class="m-auto my-5 max-w-7xl rounded-lg border-1 border-bgrey">
 	<!-- filter and add child button -->
 	<div></div>
 	<!-- Rows -->
-	<table class=" w-full">
-		<tr class="border-1 border-bgrey">
+	<table class="w-full">
+		<tr>
 			<td class="p-3">Name</td>
 			<td class="p-3">Tally</td>
 			<td class="p-3">Tag</td>
 		</tr>
 		{#each $persons as person}
-			<tr class="border-1 border-bgrey">
+			<tr class=" border-t-[0.5px] border-bgrey">
 				<ChildrenRows {person} />
 			</tr>
 		{/each}
