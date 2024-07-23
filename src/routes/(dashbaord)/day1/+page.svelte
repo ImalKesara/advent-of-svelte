@@ -65,7 +65,7 @@
 	};
 </script>
 
-<div class="m-auto mt-10 grid max-w-7xl grid-cols-4 gap-5">
+<div class="m-auto mt-24 grid max-w-7xl grid-cols-4 gap-5">
 	<!-- column one -->
 	<div
 		class="grid grid-cols-4 items-center gap-3 rounded-lg border-1 border-bgrey bg-semiBlacked p-5"
@@ -124,15 +124,27 @@
 </div>
 
 <!-- table -->
-<div class="m-auto my-5 max-w-7xl rounded-lg border-1 border-bgrey">
+<div class="m-auto my-5 max-w-7xl items-center rounded-lg border-1 border-bgrey">
 	<!-- filter and add child button -->
-	<div></div>
+	<div class="grid grid-cols-2 p-5">
+		<div class="grid grid-cols-6 gap-2">
+			<input
+				class=" col-span-4 rounded-full border-1 border-bgrey bg-transparent px-5 py-1 outline-none"
+				type="text"
+				placeholder="Filter name"
+			/>
+			<button class="col-span-1 rounded-full border-2 border-dotted border-bgrey">Tag</button>
+		</div>
+		<div class="flex justify-end">
+			<button class="rounded-full bg-greenC px-5 py-2">Add child</button>
+		</div>
+	</div>
 	<!-- Rows -->
 	<table class="w-full">
 		<tr>
-			<td class="p-3">Name</td>
-			<td class="p-3">Tally</td>
-			<td class="p-3">Tag</td>
+			<td class="p-3"><b>Name</b></td>
+			<td class="p-3"><b>Tally</b></td>
+			<td class="p-3"><b>Tag</b></td>
 		</tr>
 		{#each $persons as person}
 			<tr class=" border-t-[0.5px] border-bgrey">

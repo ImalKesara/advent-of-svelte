@@ -4,7 +4,7 @@
 	import SvelteLogo from './Icon/SvelteLogo.svelte';
 </script>
 
-<header>
+<header class=" fixed left-0 top-0 m-1 w-full shadow-md backdrop-blur-lg backdrop-filter">
 	<div class="m-auto grid max-w-8xl grid-cols-2 items-center rounded-lg border-1 border-bgrey p-5">
 		<div class="grid grid-cols-10 items-center">
 			<a class=" col-span-1" href="#"><SvelteLogo width={34} height={34} /></a>
