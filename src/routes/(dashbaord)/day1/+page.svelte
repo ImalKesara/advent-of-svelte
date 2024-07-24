@@ -61,13 +61,11 @@
 
 	$: {
 		filterArray = copyPersons.filter((person) => {
-			if (person.name.includes(filterName)) {
+			if (person.name.toLowerCase().includes(filterName.toLowerCase())) {
 				return person.name;
 			}
 		});
 	}
-
-	console.log(copyPersons);
 </script>
 
 <div class="m-auto mt-24 grid max-w-7xl grid-cols-4 gap-5">
@@ -157,10 +155,10 @@
 	<!-- Rows -->
 	<table class="w-full">
 		<tr>
-			<td class="p-3"><b>No</b></td>
-			<td class="p-3"><b>Name</b></td>
-			<td class="p-3"><b>Tally</b></td>
-			<td class="p-3"><b>Tag</b></td>
+			<td class="w-1/5 p-3"><b>No</b></td>
+			<td class="w-2/5 p-3"><b>Name</b></td>
+			<td class="w-1/5 p-3"><b>Tally</b></td>
+			<td class="w-1/5 p-3"><b>Tag</b></td>
 		</tr>
 		{#each filterArray as person, i}
 			<tr class=" border-t-[0.5px] border-bgrey">
