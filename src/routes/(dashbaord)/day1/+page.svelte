@@ -3,50 +3,45 @@
 	import NaughtChild from '$lib/components/Icon/NaughtChild.svelte';
 	import Nicechild from '$lib/components/Icon/Nicechild.svelte';
 	import Totallogo from '$lib/components/Icon/Totallogo.svelte';
+	import Add from '$lib/components/Icon/Add.svelte';
 	import { persons, loadPersons } from '$lib/stores/dayoneStore';
 	import { onMount } from 'svelte';
+	import { get } from 'svelte/store';
 	import ChildrenRows from './ChildrenRows.svelte';
 
 	let niceChildren: number = 0;
 	let naughtyChildren: number = 0;
 	let nicestChild: string;
 	let naughtChild: string;
+	let filterName: string = '';
+	let copyPersons: Persons[] = [];
+	let filterArray: Persons[];
 
 	onMount(() => {
 		loadPersons();
 		loadniceChilds();
 		loadnaughtChilds();
 		getSmallestandLargest();
-		// loadniceChildName();
-		// getNicestAndNaughtchild();
-		getSmallestandLargest();
+		copyPersons = get(persons);
 	});
 
 	//gets all the good childrens
 	const loadniceChilds = () => {
-		$persons.filter((person) => {
+		$persons.forEach((person) => {
 			if (person.tally > 0) {
 				niceChildren++;
 			}
 		});
 	};
+
 	//gets all the naughty childrens
 	const loadnaughtChilds = () => {
-		$persons.filter((person) => {
+		$persons.forEach((person) => {
 			if (person.tally < 0) {
 				naughtyChildren++;
 			}
 		});
 	};
-
-	// const loadniceChildName = () => {
-	// 	$persons = $persons.sort((a, b) => a.tally - b.tally);
-	// };
-
-	// const getNicestAndNaughtchild = () => {
-	// 	nicestChild = $persons[$persons.length - 1].name;
-	// 	naughtChild = $persons[0].name;
-	// };
 
 	const getSmallestandLargest = () => {
 		let smallest: number = $persons[1].tally;
@@ -63,6 +58,16 @@
 			}
 		});
 	};
+
+	$: {
+		filterArray = copyPersons.filter((person) => {
+			if (person.name.includes(filterName)) {
+				return person.name;
+			}
+		});
+	}
+
+	console.log(copyPersons);
 </script>
 
 <div class="m-auto mt-24 grid max-w-7xl grid-cols-4 gap-5">
@@ -129,11 +134,21 @@
 	<div class="grid grid-cols-2 p-5">
 		<div class="grid grid-cols-6 gap-2">
 			<input
+				bind:value={filterName}
 				class=" col-span-4 rounded-full border-1 border-bgrey bg-transparent px-5 py-1 outline-none"
 				type="text"
 				placeholder="Filter name"
 			/>
-			<button class="col-span-1 rounded-full border-2 border-dotted border-bgrey">Tag</button>
+			<div
+				class="col-span-1 flex items-center justify-around gap-0 rounded-full border-2 border-dotted border-bgrey px-2 hover:bg-bgrey"
+			>
+				<button
+					on:click={() => {
+						console.log('noice');
+					}}><Add /></button
+				>
+				<span>Tag</span>
+			</div>
 		</div>
 		<div class="flex justify-end">
 			<button class="rounded-full bg-greenC px-5 py-2">Add child</button>
@@ -142,13 +157,14 @@
 	<!-- Rows -->
 	<table class="w-full">
 		<tr>
+			<td class="p-3"><b>No</b></td>
 			<td class="p-3"><b>Name</b></td>
 			<td class="p-3"><b>Tally</b></td>
 			<td class="p-3"><b>Tag</b></td>
 		</tr>
-		{#each $persons as person}
+		{#each filterArray as person, i}
 			<tr class=" border-t-[0.5px] border-bgrey">
-				<ChildrenRows {person} />
+				<ChildrenRows {person} {i} />
 			</tr>
 		{/each}
 	</table>
