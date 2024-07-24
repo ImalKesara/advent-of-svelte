@@ -19,9 +19,7 @@
 
 	onMount(() => {
 		loadPersons();
-		loadniceChilds();
-		loadnaughtChilds();
-		getSmallestandLargest();
+		updateAll();
 		copyPersons = get(persons);
 	});
 
@@ -57,6 +55,12 @@
 				naughtChild = person.name;
 			}
 		});
+	};
+
+	const updateAll = () => {
+		loadniceChilds();
+		loadnaughtChilds();
+		getSmallestandLargest();
 	};
 
 	$: {
