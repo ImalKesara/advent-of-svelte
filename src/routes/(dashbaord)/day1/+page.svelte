@@ -8,6 +8,7 @@
 	import { onMount } from 'svelte';
 	import { get } from 'svelte/store';
 	import ChildrenRows from './ChildrenRows.svelte';
+	import Pagination from './Pagination.svelte';
 
 	let niceChildren: number = 0;
 	let naughtyChildren: number = 0;
@@ -170,4 +171,7 @@
 			</tr>
 		{/each}
 	</table>
+
+	<!-- //pagition -->
+	<Pagination {copyPersons} />
 </div>
