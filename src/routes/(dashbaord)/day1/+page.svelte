@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Close from '$lib/components/Icon/Close.svelte';
 	import Addbyme from '$lib/components/Icon/Addbyme.svelte';
 	import NaughtChild from '$lib/components/Icon/NaughtChild.svelte';
 	import Nicechild from '$lib/components/Icon/Nicechild.svelte';
@@ -17,6 +18,7 @@
 	let filterName: string = '';
 	let copyPersons: Persons[] = [];
 	let filterArray: Persons[];
+	let isSideBarShowing: boolean = false;
 
 	onMount(() => {
 		loadPersons();
@@ -62,6 +64,11 @@
 		loadniceChilds();
 		loadnaughtChilds();
 		getSmallestandLargest();
+	};
+
+	const toggleSideBar = () => {
+		console.log('wroking');
+		isSideBarShowing = !isSideBarShowing;
 	};
 
 	$: {
@@ -154,7 +161,7 @@
 			</div>
 		</div>
 		<div class="flex justify-end">
-			<button class="rounded-full bg-greenC px-5 py-2">Add child</button>
+			<button class="rounded-full bg-greenC px-5 py-2" on:click={toggleSideBar}>Add child</button>
 		</div>
 	</div>
 	<!-- Rows -->
@@ -166,7 +173,7 @@
 			<td class="w-1/5 p-3"><b>Tag</b></td>
 		</tr>
 		{#each filterArray as person, i}
-			<tr class=" border-t-[0.5px] border-bgrey">
+			<tr class=" border-t-[0.5px] border-bgrey hover:bg-bgrey">
 				<ChildrenRows {person} {i} />
 			</tr>
 		{/each}
@@ -175,3 +182,34 @@
 	<!-- //pagition -->
 	<Pagination {copyPersons} />
 </div>
+
+<div
+	class=" absolute right-0 top-0 h-screen w-80 translate-x-28 border-1 p-5 opacity-0"
+	class:show={isSideBarShowing}
+>
+	<div class="container relative grid grid-cols-2 gap-4">
+		<button class="col-span-2 grid justify-end" on:click={toggleSideBar}><Close /></button>
+		<p class="col-span-2">Add Child</p>
+		<p class="col-span-2">
+			As this system is new to you, we are going explain to you, how to use it. This is a simple
+			form you add name and tally of child, and it will save it on system.
+		</p>
+		<div class="col-span-2 items-center justify-center">
+			<span>Name</span>
+			<input class=" h-8 w-full rounded-lg px-2 py-3" type="text" placeholder="name" />
+		</div>
+		<div class="col-span-2">
+			<span>Tally</span>
+			<input class=" h-8 w-full rounded-lg px-2 py-3" type="text" placeholder="Tally" />
+		</div>
+		<div class="col-span-2 grid justify-end">
+			<button class=" rounded-full bg-greenC px-5 py-2">Save</button>
+		</div>
+	</div>
+</div>
+
+<style>
+	.show {
+		@apply -translate-x-0 opacity-100 duration-1000;
+	}
+</style>
