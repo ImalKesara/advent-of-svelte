@@ -10,6 +10,7 @@
 	import { get } from 'svelte/store';
 	import ChildrenRows from './ChildrenRows.svelte';
 	import Pagination from './Pagination.svelte';
+	import Done from '$lib/components/Icon/Done.svelte';
 
 	let niceChildren: number = 0;
 	let naughtyChildren: number = 0;
@@ -20,7 +21,8 @@
 	let filterArray: Persons[];
 	let addedByMe: number = 0;
 	let isSideBarShowing: boolean = false;
-	let addName: string = 'Bruce Wayne';
+	let popupMenu: boolean = false;
+	let addName: string = 'Arthur Mogan';
 	let addTally: number = 69;
 
 	onMount(() => {
@@ -75,6 +77,13 @@
 
 	const toggleSideBar = () => {
 		isSideBarShowing = !isSideBarShowing;
+	};
+
+	const popUpFunc = () => {
+		popupMenu = true;
+		setTimeout(() => {
+			popupMenu = false;
+		}, 3000);
 	};
 
 	const addChild = () => {
@@ -214,7 +223,8 @@
 		<div class="col-span-2">
 			<span>Name</span>
 			<input
-				class=" h-8 w-full rounded-lg border-1 border-bgrey bg-transparent px-2 py-3 outline-none focus:outline-green-400"
+				required
+				class=" h-8 w-full rounded-lg border-1 border-bgrey bg-transparent px-2 py-3 outline outline-green-500 focus:outline-green-400"
 				type="text"
 				placeholder="Name"
 				bind:value={addName}
@@ -223,6 +233,7 @@
 		<div class="col-span-2">
 			<span>Tally</span>
 			<input
+				required
 				class=" h-8 w-full rounded-lg border-1 border-bgrey bg-transparent px-2 py-3 outline-none focus:outline-green-400"
 				type="text"
 				placeholder="Tally"
@@ -230,14 +241,29 @@
 			/>
 		</div>
 		<div class="col-span-2 grid justify-end">
-			<button class=" cursor-pointer rounded-full bg-greenC px-5 py-2" on:click={addChild}
-				>Save Changes</button
+			<button
+				class=" cursor-pointer rounded-full bg-greenC px-5 py-2"
+				on:click={addChild}
+				on:click={popUpFunc}
+				on:click={toggleSideBar}>Save Changes</button
 			>
 		</div>
 	</div>
 </div>
 
+<div class=" flex items-center justify-center opacity-0 {popupMenu ? 'sample' : ''}">
+	<div
+		class="fixed top-0 mt-1 flex items-center gap-1 rounded-full bg-white px-5 py-3 text-center text-green-500"
+	>
+		<p><Done /></p>
+		<p>Successfully added {addName}</p>
+	</div>
+</div>
+
 <style>
+	.sample {
+		@apply opacity-100;
+	}
 	.show {
 		opacity: 1;
 		transform: translateX(0);
@@ -254,7 +280,7 @@
 			transform 0.6s ease;
 	}
 	.blur {
-		filter: blur(5px);
+		filter: blur(10px);
 		transition: filter 0.5s ease;
 	}
 </style>
