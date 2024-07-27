@@ -25,33 +25,37 @@
 
 	onMount(() => {
 		loadPersons();
-		updateAll();
 		copyPersons = get(persons);
+		updateAll();
 	});
 
 	//gets all the good childrens
 	const loadniceChilds = () => {
-		$persons.forEach((person) => {
+		niceChildren = 0;
+		copyPersons.forEach((person) => {
 			if (person.tally > 0) {
 				niceChildren++;
 			}
+			return;
 		});
 	};
 
 	//gets all the naughty childrens
 	const loadnaughtChilds = () => {
-		$persons.forEach((person) => {
+		naughtyChildren = 0;
+		copyPersons.forEach((person) => {
 			if (person.tally < 0) {
 				naughtyChildren++;
 			}
+			return;
 		});
 	};
 
 	const getSmallestandLargest = () => {
-		let smallest: number = $persons[1].tally;
-		let largest: number = $persons[1].tally;
+		let smallest: number = copyPersons[1].tally;
+		let largest: number = copyPersons[1].tally;
 
-		$persons.forEach((person) => {
+		copyPersons.forEach((person) => {
 			if (person.tally >= largest) {
 				largest = person.tally;
 				nicestChild = person.name;
@@ -76,6 +80,7 @@
 	const addChild = () => {
 		copyPersons = [...copyPersons, { name: addName, tally: addTally }];
 		addedByMe++;
+		updateAll();
 	};
 
 	$: {
@@ -225,7 +230,9 @@
 			/>
 		</div>
 		<div class="col-span-2 grid justify-end">
-			<button class=" rounded-full bg-greenC px-5 py-2" on:click={addChild}>Save Changes</button>
+			<button class=" cursor-pointer rounded-full bg-greenC px-5 py-2" on:click={addChild}
+				>Save Changes</button
+			>
 		</div>
 	</div>
 </div>
