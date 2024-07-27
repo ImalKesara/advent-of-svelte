@@ -18,7 +18,10 @@
 	let filterName: string = '';
 	let copyPersons: Persons[] = [];
 	let filterArray: Persons[];
+	let addedByMe: number = 0;
 	let isSideBarShowing: boolean = false;
+	let addName: string = 'Bruce Wayne';
+	let addTally: number = 69;
 
 	onMount(() => {
 		loadPersons();
@@ -67,8 +70,12 @@
 	};
 
 	const toggleSideBar = () => {
-		console.log('wroking');
 		isSideBarShowing = !isSideBarShowing;
+	};
+
+	const addChild = () => {
+		copyPersons = [...copyPersons, { name: addName, tally: addTally }];
+		addedByMe++;
 	};
 
 	$: {
@@ -91,7 +98,7 @@
 				<Totallogo />
 			</div>
 			<div class="col-span-3">
-				<span class="text-3xl"><b>{$persons.length}</b></span>
+				<span class="text-3xl"><b>{copyPersons.length}</b></span>
 				<span class=" block text-sm text-gray-500">Ready for Gifts</span>
 			</div>
 		</div>
@@ -133,7 +140,7 @@
 				<Addbyme />
 			</div>
 			<div class="col-span-3">
-				<span class="text-3xl"><b>0</b></span>
+				<span class="text-3xl"><b>{addedByMe}</b></span>
 				<span class=" block text-sm text-gray-500">Reset on Reload</span>
 			</div>
 		</div>
@@ -186,7 +193,7 @@
 </div>
 
 <div
-	class=" absolute right-0 top-0 h-screen w-80 border-l-1 border-gray-700 p-5 opacity-0 {isSideBarShowing
+	class="  fixed right-0 top-0 z-10 h-screen w-96 border-l-1 border-gray-700 bg-semiBlacked p-5 opacity-0 {isSideBarShowing
 		? 'show'
 		: 'hide'}"
 >
@@ -204,7 +211,8 @@
 			<input
 				class=" h-8 w-full rounded-lg border-1 border-bgrey bg-transparent px-2 py-3 outline-none focus:outline-green-400"
 				type="text"
-				placeholder="name"
+				placeholder="Name"
+				bind:value={addName}
 			/>
 		</div>
 		<div class="col-span-2">
@@ -213,10 +221,11 @@
 				class=" h-8 w-full rounded-lg border-1 border-bgrey bg-transparent px-2 py-3 outline-none focus:outline-green-400"
 				type="text"
 				placeholder="Tally"
+				bind:value={addTally}
 			/>
 		</div>
 		<div class="col-span-2 grid justify-end">
-			<button class=" rounded-full bg-greenC px-5 py-2">Save</button>
+			<button class=" rounded-full bg-greenC px-5 py-2" on:click={addChild}>Save Changes</button>
 		</div>
 	</div>
 </div>
