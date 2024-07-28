@@ -114,6 +114,11 @@
 		console.log(front, rear);
 	};
 
+	const sample = (event: any) => {
+		rowsPerpage = event.detail;
+		rear = rowsPerpage;
+	};
+
 	$: {
 		totalPages = Math.ceil(copyPersons.length / rowsPerpage);
 		filterArray = copyPersons
@@ -231,6 +236,7 @@
 			{copyPersons}
 			{currentPage}
 			{totalPages}
+			on:updateRowsPerPage={sample}
 			on:increasePage={paginationIncrease}
 			on:decresePage={paginationDecrease}
 		/>
