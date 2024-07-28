@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Footer from '$lib/components/Footer.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
 </script>
 
@@ -6,12 +7,10 @@
 	<title>Advent Of Svelte | Day 1</title>
 </svelte:head>
 
-<div class="m-2 h-screen text-white">
+<div class=" h-screen text-white">
 	<Navbar />
 	<main>
 		<slot />
 	</main>
+	<Footer />
 </div>
-
-<style>
-</style>

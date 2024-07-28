@@ -6,3 +6,6 @@ export const persons = writable<Persons[]>([]);
 export const loadPersons = () => {
 	persons.set(data.persons);
 };
+
+
+

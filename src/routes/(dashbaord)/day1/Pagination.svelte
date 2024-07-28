@@ -20,11 +20,11 @@
 </script>
 
 <div class="grid grid-cols-2 p-5">
-	<div class="text-sm">
+	<div class="col-span-2 text-center text-sm md:col-span-1 md:text-left">
 		Total Children(s): <span class="font-thin">{copyPersons.length}</span>
 	</div>
-	<div class="grid grid-cols-12 items-center text-sm">
-		<div class="col-span-6">
+	<div class=" grid grid-cols-12 place-items-center text-sm">
+		<div class=" col-span-12 flex justify-center md:col-span-6">
 			<div class="grid grid-cols-3 items-center">
 				<p>Rows per page</p>
 				<select
@@ -38,8 +38,8 @@
 				</select>
 			</div>
 		</div>
-		<div class=" col-span-3 text-center">Page {currentPage} of {totalPages}</div>
-		<div class="  grid grid-cols-2">
+		<div class="col-span-12 text-center md:col-span-3">Page {currentPage} of {totalPages}</div>
+		<div class="grid grid-cols-2">
 			<button on:click={decrease}><Leftarrow /></button>
 			<button on:click={increase}><Rightarrow /></button>
 		</div>

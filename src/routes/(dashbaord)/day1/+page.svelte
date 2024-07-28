@@ -132,7 +132,7 @@
 </script>
 
 <div class={isSideBarShowing ? 'blur' : ''}>
-	<div class="m-auto mt-24 grid max-w-7xl grid-cols-4 gap-5">
+	<div class="m-auto mt-24 grid max-w-7xl grid-cols-2 gap-5 p-2 md:grid-cols-4">
 		<!-- column one -->
 		<div
 			class="grid grid-cols-4 items-center gap-3 rounded-lg border-1 border-bgrey bg-semiBlacked p-5"
