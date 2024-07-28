@@ -11,6 +11,7 @@
 	import ChildrenRows from './ChildrenRows.svelte';
 	import Pagination from './Pagination.svelte';
 	import Done from '$lib/components/Icon/Done.svelte';
+	import Empty from '$lib/components/Icon/Empty.svelte';
 
 	let niceChildren: number = 0;
 	let naughtyChildren: number = 0;
@@ -24,6 +25,11 @@
 	let popupMenu: boolean = false;
 	let addName: string = 'Arthur Mogan';
 	let addTally: number = 69;
+	let currentPage: number = 1;
+	let totalPages: number;
+	let front: number = 0;
+	let rowsPerpage: number = 10; //dynamic value default 10
+	let rear: number = rowsPerpage; //dynamic value
 
 	onMount(() => {
 		loadPersons();
@@ -87,17 +93,36 @@
 	};
 
 	const addChild = () => {
+		if (addName === '') {
+			return;
+		}
 		copyPersons = [...copyPersons, { name: addName, tally: addTally }];
 		addedByMe++;
 		updateAll();
 	};
+	const paginationIncrease = () => {
+		currentPage++;
+		front += rowsPerpage;
+		rear += rowsPerpage;
+		console.log(front, rear);
+	};
+
+	const paginationDecrease = () => {
+		currentPage--;
+		front -= rowsPerpage;
+		rear -= rowsPerpage;
+		console.log(front, rear);
+	};
 
 	$: {
-		filterArray = copyPersons.filter((person) => {
-			if (person.name.toLowerCase().includes(filterName.toLowerCase())) {
-				return person.name;
-			}
-		});
+		totalPages = Math.ceil(copyPersons.length / rowsPerpage);
+		filterArray = copyPersons
+			.filter((person) => {
+				if (person.name.toLowerCase().includes(filterName.toLowerCase())) {
+					return person.name;
+				}
+			})
+			.slice(front, rear); // currentPage -1 , rowsPerpage
 	}
 </script>
 
@@ -202,7 +227,13 @@
 		</table>
 
 		<!-- //pagition -->
-		<Pagination {copyPersons} />
+		<Pagination
+			{copyPersons}
+			{currentPage}
+			{totalPages}
+			on:increasePage={paginationIncrease}
+			on:decresePage={paginationDecrease}
+		/>
 	</div>
 </div>
 
@@ -251,20 +282,34 @@
 	</div>
 </div>
 
-<div class=" flex items-center justify-center opacity-0 {popupMenu ? 'sample' : ''}">
+<div
+	class=" duration-800 flex items-center justify-center opacity-0 transition-transform {popupMenu
+		? 'sample'
+		: ''}"
+>
 	<div
-		class="fixed top-0 mt-1 flex items-center gap-1 rounded-full bg-white px-5 py-3 text-center text-green-500"
+		class="fixed top-0 mt-10 flex items-center justify-center gap-1 rounded-md bg-white px-5 py-2 text-center"
 	>
-		<p><Done /></p>
-		<p>Successfully added {addName}</p>
+		{#if addName === ''}
+			<p><Empty /></p>
+			<p class="text-red-500">Text field is empty</p>
+		{:else}
+			<p><Done width={32} height={32} /></p>
+			<p class="text-green-500">Successfully added {addName}</p>
+		{/if}
 	</div>
 </div>
 
-<style>
+<style lang="postcss">
 	.sample {
-		@apply opacity-100;
+		opacity: 1;
+		transform: -translateY(0);
+		transition:
+			opacity 0.5s ease-in,
+			transform 0.5s ease-in;
 	}
 	.show {
+		@apply transition-all duration-300;
 		opacity: 1;
 		transform: translateX(0);
 		transition:
