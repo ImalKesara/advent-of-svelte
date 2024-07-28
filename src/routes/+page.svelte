@@ -15,8 +15,8 @@
 	<title>24 Days</title>
 </svelte:head>
 
-<section class="  m-auto mt-40 max-w-8xl text-center text-white">
-	<div class="grid grid-cols-4">
+<section class="  m-auto mt-40 max-w-5xl text-center text-white md:max-w-8xl">
+	<div class="grid-col-1 grid md:grid-cols-4">
 		<div class="grid grid-cols-2 items-center">
 			<div>
 				<p class=" text-lg font-bold">Day</p>
