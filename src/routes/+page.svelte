@@ -15,7 +15,7 @@
 	<title>24 Days</title>
 </svelte:head>
 
-<section class="  m-auto mt-40 max-w-5xl text-center text-white md:max-w-8xl">
+<section class="m-auto flex h-full items-center text-center text-white md:h-screen md:max-w-8xl">
 	<div class="grid-col-1 grid md:grid-cols-4">
 		<div class="grid grid-cols-2 items-center">
 			<div>
@@ -255,6 +255,3 @@
 		</div>
 	</div>
 </section>
-
-<style>
-</style>

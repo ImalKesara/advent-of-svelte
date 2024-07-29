@@ -8,12 +8,15 @@
 	export let value: number = 10;
 	const dispatch = createEventDispatcher();
 	let rows: number[] = [10, 20, 30, 40, 50];
+
 	function increase() {
 		dispatch('increasePage');
 	}
+
 	function decrease() {
 		dispatch('decresePage');
 	}
+
 	function updateRowsPerPage() {
 		dispatch('updateRowsPerPage', value);
 	}
@@ -24,7 +27,7 @@
 		Total Children(s): <span class="font-thin">{copyPersons.length}</span>
 	</div>
 	<div class=" grid grid-cols-12 place-items-center text-sm">
-		<div class=" col-span-12 flex justify-center md:col-span-6">
+		<div class=" col-span-12 justify-center md:col-span-6">
 			<div class="grid grid-cols-3 items-center">
 				<p>Rows per page</p>
 				<select
