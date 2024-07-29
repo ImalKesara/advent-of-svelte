@@ -2,6 +2,12 @@
 	import SvelteLogo from './Icon/SvelteLogo.svelte';
 </script>
 
-<footer class=" flex h-14 w-full items-center justify-center bg-semiBlacked text-center text-white">
-	<div class=" text-lg">Made with Svelte &nbsp❤️</div>
+<footer
+	class="  m-auto flex h-14 max-w-8xl items-center justify-center border-t-1 border-bgrey text-center text-white"
+>
+	<div class="  text-lg">
+		<span class="flex items-center gap-2"
+			>Advent of Svelte 2024. <SvelteLogo width={18} height={18} /></span
+		>
+	</div>
 </footer>
