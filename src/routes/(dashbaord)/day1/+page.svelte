@@ -206,7 +206,7 @@
 					placeholder="Filter name"
 				/>
 				<div
-					class="col-span-1 flex items-center justify-around gap-0 rounded-full border-2 border-dotted border-bgrey px-2 hover:bg-bgrey"
+					class="col-span-2 flex items-center justify-around gap-0 rounded-full border-2 border-dotted border-bgrey px-2 hover:bg-bgrey md:col-span-1"
 				>
 					<button
 						on:click={() => {
