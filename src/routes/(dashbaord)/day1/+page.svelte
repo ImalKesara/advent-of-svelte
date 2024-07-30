@@ -123,6 +123,10 @@
 		rear = rowsPerpage;
 	};
 
+	const tagFilter = () => {
+		console.log('working');
+	};
+
 	$: {
 		totalPages = Math.ceil(copyPersons.length / rowsPerpage);
 		filterArray = copyPersons
@@ -201,18 +205,14 @@
 			<div class="grid grid-cols-6 gap-2">
 				<input
 					bind:value={filterName}
-					class=" col-span-4 rounded-full border-1 border-bgrey bg-transparent px-5 py-1 outline-none"
+					class=" col-span-4 rounded-full border-1 border-bgrey bg-transparent px-4 py-1 outline-none md:px-5"
 					type="text"
 					placeholder="Filter name"
 				/>
 				<div
-					class="col-span-2 flex items-center justify-around gap-0 rounded-full border-2 border-dotted border-bgrey px-2 hover:bg-bgrey md:col-span-1"
+					class="col-span-2 flex items-center justify-around gap-0 rounded-full border-2 border-dotted border-bgrey px-8 hover:bg-bgrey md:col-span-1 md:px-2"
 				>
-					<button
-						on:click={() => {
-							console.log('noice');
-						}}><Add /></button
-					>
+					<button on:click={tagFilter}><Add /></button>
 					<span>Tag</span>
 				</div>
 			</div>
