@@ -101,17 +101,21 @@
 		updateAll();
 	};
 	const paginationIncrease = () => {
-		currentPage++;
-		front += rowsPerpage;
-		rear += rowsPerpage;
-		console.log(front, rear);
+		if (currentPage < totalPages) {
+			currentPage++;
+			front += rowsPerpage;
+			rear += rowsPerpage;
+			console.log(front, rear);
+		}
 	};
 
 	const paginationDecrease = () => {
-		currentPage--;
-		front -= rowsPerpage;
-		rear -= rowsPerpage;
-		console.log(front, rear);
+		if (currentPage > 1) {
+			currentPage--;
+			front -= rowsPerpage;
+			rear -= rowsPerpage;
+			console.log(front, rear);
+		}
 	};
 
 	const sample = (event: any) => {
