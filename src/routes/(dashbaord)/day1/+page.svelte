@@ -1,17 +1,17 @@
 <script lang="ts">
-	import Close from '$lib/components/Icon/Close.svelte';
-	import Addbyme from '$lib/components/Icon/Addbyme.svelte';
-	import NaughtChild from '$lib/components/Icon/NaughtChild.svelte';
-	import Nicechild from '$lib/components/Icon/Nicechild.svelte';
-	import Totallogo from '$lib/components/Icon/Totallogo.svelte';
-	import Add from '$lib/components/Icon/Add.svelte';
+	import Close from '$lib/components/Icon/day One icons/Close.svelte';
+	import Addbyme from '$lib/components/Icon/day One icons/Addbyme.svelte';
+	import NaughtChild from '$lib/components/Icon/day One icons/NaughtChild.svelte';
+	import Nicechild from '$lib/components/Icon/day One icons/Nicechild.svelte';
+	import Totallogo from '$lib/components/Icon/day One icons/Totallogo.svelte';
+	import Add from '$lib/components/Icon/day One icons/Add.svelte';
 	import { persons, loadPersons } from '$lib/stores/dayoneStore';
 	import { onMount } from 'svelte';
 	import { get } from 'svelte/store';
 	import ChildrenRows from './ChildrenRows.svelte';
 	import Pagination from './Pagination.svelte';
-	import Done from '$lib/components/Icon/Done.svelte';
-	import Empty from '$lib/components/Icon/Empty.svelte';
+	import Done from '$lib/components/Icon/day One icons/Done.svelte';
+	import Empty from '$lib/components/Icon/day One icons/Empty.svelte';
 
 	let niceChildren: number = 0;
 	let naughtyChildren: number = 0;

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Darkmode from './Icon/Darkmode.svelte';
-	import Github from './Icon/Github.svelte';
-	import SvelteLogo from './Icon/SvelteLogo.svelte';
+	import Darkmode from './Icon/day One icons/Darkmode.svelte';
+	import Github from './Icon/day One icons/Github.svelte';
+	import SvelteLogo from './Icon/day One icons/SvelteLogo.svelte';
 	export let visible: boolean = false;
 	const darkmode = () => {
 		visible = !visible;

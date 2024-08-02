@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import Rightarrow from '$lib/components/Icon/Rightarrow.svelte';
-	import Leftarrow from '$lib/components/Icon/Leftarrow.svelte';
+	import Rightarrow from '$lib/components/Icon/day One icons/Rightarrow.svelte';
+	import Leftarrow from '$lib/components/Icon/day One icons/Leftarrow.svelte';
 	export let copyPersons;
 	export let currentPage: number;
 	export let totalPages;

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Delete from '$lib/components/Icon/Delete.svelte';
 	export let person;
 	export let i;
 </script>

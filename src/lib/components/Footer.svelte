@@ -1,5 +1,5 @@
 <script>
-	import SvelteLogo from './Icon/SvelteLogo.svelte';
+	import SvelteLogo from './Icon/day One icons/SvelteLogo.svelte';
 </script>
 
 <footer
