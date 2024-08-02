@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>Advent Of Svelte | Day 1</title>
+	<title>Day 2-Cookie Counter</title>
 </svelte:head>
 
 <div class=" h-screen text-white">

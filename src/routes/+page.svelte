@@ -30,7 +30,7 @@
 				<p class=" text-lg font-bold">Day</p>
 				<p>Pending</p>
 			</div>
-			<a href="#"> <Two width={100} height={100} /></a>
+			<a href="./day2"> <Two width={100} height={100} /></a>
 		</div>
 
 		<div class="grid grid-cols-2 items-center">
