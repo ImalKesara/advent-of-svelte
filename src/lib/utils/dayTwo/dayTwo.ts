@@ -1,21 +1,26 @@
 import { cookieCounter, progress } from '$lib/stores/daytwoStore';
-import { get } from 'svelte/store';
 
-export const copy = get(cookieCounter);
+export const maxCookies: number = 50;
+export let count: number = 0;
 
 export const increment = () => {
-	if (copy < 50) {
+	if (count < maxCookies) {
 		cookieCounter.update((n) => n + 1);
 		progress.update((n) => n + 0.02);
+		count++;
 	}
 };
 
 export const decrement = () => {
-	cookieCounter.update((n) => n - 1);
-	progress.update((n) => n - 0.02);
+	if (count > -1) {
+		cookieCounter.update((n) => n - 1);
+		progress.update((n) => n - 0.02);
+		count--;
+	}
 };
 
 export const reset = () => {
 	cookieCounter.set(0);
 	progress.set(0);
+	count = 0;
 };

@@ -7,7 +7,7 @@
 	<title>Day 2-Cookie Counter</title>
 </svelte:head>
 
-<div class=" h-screen text-white">
+<div class=" text-white">
 	<Navbar />
 	<main>
 		<slot />
