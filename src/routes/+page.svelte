@@ -9,6 +9,34 @@
 	import Eight from '$lib/components/NumberIcons/Eight.svelte';
 	import Nine from '$lib/components/NumberIcons/Nine.svelte';
 	import Zero from '$lib/components/NumberIcons/Zero.svelte';
+
+	const components = [Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine];
+	const days = [
+		{ day: 1, status: 'Completed', link: './day1' },
+		{ day: 2, status: 'Pending', link: './day2' },
+		{ day: 3, status: 'Pending', link: './day3' },
+		{ day: 4, status: 'Pending', link: './day4' },
+		{ day: 5, status: 'Pending', link: './day5' },
+		{ day: 6, status: 'Pending', link: './day6' },
+		{ day: 7, status: 'Pending', link: './day7' },
+		{ day: 8, status: 'Pending', link: './day8' },
+		{ day: 9, status: 'Pending', link: './day9' },
+		{ day: 10, status: 'Pending', link: './day10' },
+		{ day: 11, status: 'Pending', link: './day11' },
+		{ day: 12, status: 'Pending', link: './day12' },
+		{ day: 13, status: 'Pending', link: './day13' },
+		{ day: 14, status: 'Pending', link: './day14' },
+		{ day: 15, status: 'Pending', link: './day15' },
+		{ day: 16, status: 'Pending', link: './day16' },
+		{ day: 17, status: 'Pending', link: './day17' },
+		{ day: 18, status: 'Pending', link: './day18' },
+		{ day: 19, status: 'Pending', link: './day19' },
+		{ day: 20, status: 'Pending', link: './day20' },
+		{ day: 21, status: 'Pending', link: './day21' },
+		{ day: 22, status: 'Pending', link: './day22' },
+		{ day: 23, status: 'Pending', link: './day23' },
+		{ day: 24, status: 'Pending', link: './day24' }
+	];
 </script>
 
 <svelte:head>
@@ -16,242 +44,34 @@
 </svelte:head>
 
 <section class="m-auto flex h-full items-center text-center text-white md:h-screen md:max-w-8xl">
-	<div class="grid-col-1 grid md:grid-cols-4">
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class=" text-lg font-bold">Day</p>
-				<p>Completed</p>
+	<div class="grid-col-1 grid md:grid-cols-4 p-1">
+		{#each days as day}
+			<div class="grid grid-cols-10 items-center border-1 border-bgrey">
+				<div class="col-span-4">
+					<p class="text-lg font-bold">Day {day.day}</p>
+					<p>{day.status}</p>
+				</div>
+				<div class="col-span-4">
+					<a href={day.link}>
+						{#if day.day < 10}
+							<svelte:component this={components[day.day]} width={100} height={100} />
+						{:else}
+							<svelte:component
+								this={components[Math.floor(day.day / 10)]}
+								width={100}
+								height={100}
+							/>
+							<svelte:component this={components[day.day % 10]} width={100} height={100} />
+						{/if}
+					</a>
+				</div>
 			</div>
-			<a href="./day1"> <One width={100} height={100} /></a>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class=" text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<a href="./day2"> <Two width={100} height={100} /></a>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class=" text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<a href="#"> <Three width={100} height={100} /></a>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class=" text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<a href="#"> <Four width={100} height={100} /></a>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class=" text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<a href="#"> <Five width={100} height={100} /></a>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class=" text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<a href="#"> <Six width={100} height={100} /></a>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class=" text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<a href="#"> <Seven width={100} height={100} /></a>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class=" text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<a href="#"> <Eight width={100} height={100} /></a>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class=" text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<a href="#"> <Nine width={100} height={100} /> </a>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class="text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<div class="grid grid-cols-2 gap-5">
-				<a href="#"> <One width={100} height={100} /></a>
-				<Zero width={100} height={100} />
-			</div>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class="text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<div class="grid grid-cols-2 gap-5">
-				<a href="#"> <One width={100} height={100} /></a>
-				<One width={100} height={100} />
-			</div>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class="text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<div class="grid grid-cols-2 gap-5">
-				<a href="#"> <One width={100} height={100} /></a>
-				<Two width={100} height={100} />
-			</div>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class="text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<div class="grid grid-cols-2 gap-5">
-				<a href="#"> <One width={100} height={100} /></a>
-				<Three width={100} height={100} />
-			</div>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class="text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<div class="grid grid-cols-2 gap-5">
-				<a href="#"> <One width={100} height={100} /></a>
-				<Four width={100} height={100} />
-			</div>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class="text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<div class="grid grid-cols-2 gap-5">
-				<a href="#"> <One width={100} height={100} /></a>
-				<Five width={100} height={100} />
-			</div>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class="text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<div class="grid grid-cols-2 gap-5">
-				<a href="#"> <One width={100} height={100} /></a>
-				<Six width={100} height={100} />
-			</div>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class="text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<div class="grid grid-cols-2 gap-5">
-				<a href="#"> <One width={100} height={100} /></a>
-				<Seven width={100} height={100} />
-			</div>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class="text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<div class="grid grid-cols-2 gap-5">
-				<a href="#"> <One width={100} height={100} /></a>
-				<Eight width={100} height={100} />
-			</div>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class="text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<div class="grid grid-cols-2 gap-5">
-				<a href="#"> <One width={100} height={100} /></a>
-				<Nine width={100} height={100} />
-			</div>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class="text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<div class="grid grid-cols-2 gap-5">
-				<a href="#"> <Two width={100} height={100} /></a>
-				<Zero width={100} height={100} />
-			</div>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class="text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<div class="grid grid-cols-2 gap-5">
-				<a href="#"> <Two width={100} height={100} /></a>
-				<One width={100} height={100} />
-			</div>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class="text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<div class="grid grid-cols-2 gap-5">
-				<a href="#"> <Two width={100} height={100} /></a>
-				<Two width={100} height={100} />
-			</div>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class="text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<div class="grid grid-cols-2 gap-5">
-				<a href="#"> <Two width={100} height={100} /></a>
-				<Three width={100} height={100} />
-			</div>
-		</div>
-
-		<div class="grid grid-cols-2 items-center">
-			<div>
-				<p class="text-lg font-bold">Day</p>
-				<p>Pending</p>
-			</div>
-			<div class="grid grid-cols-2 gap-5">
-				<a href="#"> <Two width={100} height={100} /></a>
-				<Four width={100} height={100} />
-			</div>
-		</div>
+		{/each}
 	</div>
 </section>
+
+<style lang="postcss">
+	a {
+		@apply grid grid-cols-2 gap-x-10;
+	}
+</style>
