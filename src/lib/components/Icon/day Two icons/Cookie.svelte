@@ -1,10 +1,9 @@
-<svg
-	xmlns="http://www.w3.org/2000/svg"
-	width="1.2em"
-	height="1.2em"
-	viewBox="0 0 32 32"
-	{...$$props}
->
+<script lang="ts">
+	export const width: number = 24;
+	export const height: number = 24;
+</script>
+
+<svg xmlns="http://www.w3.org/2000/svg" {width} {height} viewBox="0 0 32 32" {...$$props}>
 	<g fill="none">
 		<path
 			fill="#ac5811"
