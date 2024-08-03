@@ -12,8 +12,8 @@
 	<div
 		class="m-auto grid max-w-8xl grid-cols-1 items-center rounded-lg border-1 border-bgrey p-5 md:grid-cols-2"
 	>
-		<div class="grid grid-cols-10 items-center">
-			<a class="col-span-2 md:col-span-1" href="#"><SvelteLogo width={34} height={34} /></a>
+		<div class="grid grid-cols-12 items-center gap-x-10 md:grid-cols-10">
+			<a class="col-span-1 md:col-span-1" href="./"><SvelteLogo width={34} height={34} /></a>
 			<p class="col-span-7">Advent of svelte</p>
 		</div>
 		<nav class="hidden md:block">
