@@ -36,7 +36,7 @@
 						if (count < maxCookies) {
 							increment();
 							const cookie = document.createElement('img');
-							cookie.src = 'src/lib/components/Icon/day Two icons/cookie.png';
+							cookie.src = 'src/lib/components/Icon/dayTwoicons/cookie.png';
 							container.appendChild(cookie);
 						}
 					}}>Add</button
