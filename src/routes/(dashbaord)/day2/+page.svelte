@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Smile from './../../../lib/components/Icon/day Two icons/Smile.svelte';
+	import Smile from '../../../lib/components/Icon/dayTwoicons/Smile.svelte';
 	import { increment, decrement, reset, maxCookies, count } from '$lib/utils/dayTwo/dayTwo';
 	import { cookieCounter, progress } from '$lib/stores/daytwoStore';
 	import Icon from '@iconify/svelte';
