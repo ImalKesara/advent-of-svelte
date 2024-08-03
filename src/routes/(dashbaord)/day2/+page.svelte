@@ -2,13 +2,14 @@
 	import Smile from './../../../lib/components/Icon/day Two icons/Smile.svelte';
 	import { increment, decrement, reset, maxCookies, count } from '$lib/utils/dayTwo/dayTwo';
 	import { cookieCounter, progress } from '$lib/stores/daytwoStore';
+	import Icon from '@iconify/svelte';
 
 	let container: any;
 </script>
 
 <div class=" m-auto my-24 h-full max-w-7xl border-1 border-bgrey p-5">
 	<div class="grid h-full grid-cols-12 border-1 border-bgrey">
-		<div class="image-wrapper col-span-6 p-5 place-content-center">
+		<div class="image-wrapper col-span-6 place-content-center p-5">
 			<div bind:this={container} class="grid grid-cols-10"></div>
 		</div>
 		<div class="col-span-6 grid items-center justify-center gap-5 p-5">
@@ -35,7 +36,7 @@
 						if (count < maxCookies) {
 							increment();
 							const cookie = document.createElement('img');
-							cookie.src = '/src/cookie.png';
+							cookie.src = 'src/lib/components/Icon/day Two icons/cookie.png';
 							container.appendChild(cookie);
 						}
 					}}>Add</button
