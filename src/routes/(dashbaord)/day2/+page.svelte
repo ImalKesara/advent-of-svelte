@@ -14,10 +14,10 @@
 	let cookies: any[] = [];
 </script>
 
-<div class=" m-auto my-24 h-full max-w-7xl border-1 border-bgrey p-5">
-	<div class="grid h-full grid-cols-12 border-1 border-bgrey">
-		<div class="col-span-7 place-content-center p-5">
-			<div class="grid md:grid-cols-10">
+<div class=" m-auto mb-10 mt-24 h-full max-w-7xl border-1 border-bgrey p-5">
+	<div class="grid grid-cols-12 gap-x-5 border-1 border-bgrey md:h-full">
+		<div class="col-span-7 place-content-center px-5">
+			<div class="grid grid-cols-4 gap-x-8 md:grid-cols-10 md:gap-x-0">
 				{#each cookies as Cookie}
 					<Cookie width={52} height={52} />
 				{/each}

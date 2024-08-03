@@ -3,7 +3,7 @@
 </script>
 
 <footer
-	class=" bottom-0 m-auto flex h-14 max-w-8xl items-center justify-center border-t-1 border-bgrey text-center text-white"
+	class="m-auto flex h-14 max-w-8xl items-center justify-center border-t-1 border-bgrey text-center text-white"
 >
 	<div class="text-lg leading-3">
 		<span class="flex items-center gap-2"
