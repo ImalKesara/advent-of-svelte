@@ -1,4 +1,5 @@
 <script>
+	import Footer from '$lib/components/Footer.svelte';
 	import One from '$lib/components/NumberIcons/One.svelte';
 	import Two from '$lib/components/NumberIcons/Two.svelte';
 	import Three from '$lib/components/NumberIcons/Three.svelte';
@@ -44,7 +45,7 @@
 </svelte:head>
 
 <section class="m-auto flex h-full items-center text-center text-white md:h-screen md:max-w-8xl">
-	<div class="grid-col-1 grid md:grid-cols-4 p-1">
+	<div class="grid-col-1 grid p-1 md:grid-cols-4">
 		{#each days as day}
 			<div class="grid grid-cols-10 items-center border-1 border-bgrey">
 				<div class="col-span-4">
@@ -69,6 +70,7 @@
 		{/each}
 	</div>
 </section>
+<Footer />
 
 <style lang="postcss">
 	a {
