@@ -12,10 +12,15 @@
 	import Notgood from '$lib/components/Icon/day Two icons/Notgood.svelte';
 
 	let cookies: any[] = [];
+	if ($cookieCounter === -1) {
+		setTimeout(() => {
+			reset();
+		}, 2000);
+	}
 </script>
 
 <div class=" m-auto mb-10 mt-24 h-full max-w-7xl border-1 border-bgrey p-5">
-	<div class="grid grid-cols-12 gap-x-5 border-1 border-bgrey md:h-full">
+	<div class="my-20 grid grid-cols-12 gap-x-5 md:h-full">
 		<div class="col-span-7 place-content-center px-5">
 			<div class="grid grid-cols-4 gap-x-8 md:grid-cols-10 md:gap-x-0">
 				{#each cookies as Cookie}
@@ -26,7 +31,9 @@
 		<div class="col-span-5 grid items-center justify-center gap-5 p-5">
 			<div class="grid items-center justify-center md:grid-cols-12">
 				<div class="col-span-12 grid justify-items-center md:col-span-5">
-					{#if $cookieCounter <= 5}
+					{#if $cookieCounter < 0}
+						<Exhaust width={128} height={128} />
+					{:else if $cookieCounter <= 5}
 						<Smile width={128} height={128} />
 					{:else if $cookieCounter <= 10}
 						<SmileMore width={128} height={128} />
@@ -39,11 +46,7 @@
 					{:else if $cookieCounter <= 45}
 						<Wzoo width={128} height={128} />
 					{:else if $cookieCounter <= 50}
-						{#if cookies.length === 50}
-							<Exhaust width={128} height={128} />
-						{:else}
-							<Gross width={128} height={128} />
-						{/if}
+						<Gross width={128} height={128} />
 					{/if}
 				</div>
 				<h1 class="col-span-12 grid items-center text-center text-xl md:col-span-6">
@@ -67,9 +70,12 @@
 						if (count < maxCookies) {
 							increment();
 							cookies = [...cookies, Cookie];
-							if (cookies.length === 50) {
-								cookies = [];
-								reset();
+							if ($cookieCounter === 50) {
+								setInterval(() => {
+									decrement();
+									cookies.pop();
+									cookies = cookies;
+								}, 100);
 							}
 						}
 					}}>Add</button
