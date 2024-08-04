@@ -16,9 +16,9 @@
 </script>
 
 <div class=" m-auto mb-10 mt-24 h-full max-w-7xl border-1 border-bgrey p-5">
-	<div class="my-10 grid grid-cols-12 gap-x-6 md:h-full">
-		<div class="col-span-7 flex-wrap px-5">
-			<div class="grid grid-cols-4 gap-x-8 md:grid-cols-10 md:gap-x-0">
+	<div class="my-10 grid grid-cols-12 gap-x-5">
+		<div class="col-span-7 h-128 flex-wrap gap-20 md:h-full md:place-content-center">
+			<div class="grid grid-cols-5 md:grid-cols-10">
 				{#each cookies as Cookie}
 					<Cookie width={52} height={52} />
 				{/each}
@@ -79,7 +79,7 @@
 								}, 6500);
 							}
 						}
-					}}>Add</button
+					}}>Eat</button
 				>
 				<button
 					on:click={() => {
@@ -103,7 +103,7 @@
 
 <style lang="postcss">
 	button {
-		@apply mb-1 rounded-lg bg-greenC px-5 py-3 font-sansSerif font-bold;
+		@apply mb-1 rounded-lg bg-greenC px-5 py-3 font-sansSerif font-bold transition-colors duration-300 hover:bg-green-400;
 	}
 
 	progress {
