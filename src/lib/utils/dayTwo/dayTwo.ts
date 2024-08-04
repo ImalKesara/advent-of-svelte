@@ -6,7 +6,7 @@ export let count: number = 0;
 export const increment = () => {
 	if (count < maxCookies) {
 		cookieCounter.update((n) => n + 1);
-		progress.update((n) => n + 0.02);
+		progress.update((n) => n + 1);
 		count++;
 	}
 };
@@ -14,7 +14,7 @@ export const increment = () => {
 export const decrement = () => {
 	if (count > -1) {
 		cookieCounter.update((n) => n - 1);
-		progress.update((n) => n - 0.02);
+		progress.update((n) => n - 1);
 		count--;
 	}
 };

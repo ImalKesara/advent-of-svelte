@@ -12,16 +12,12 @@
 	import Notgood from '$lib/components/Icon/day Two icons/Notgood.svelte';
 
 	let cookies: any[] = [];
-	if ($cookieCounter === -1) {
-		setTimeout(() => {
-			reset();
-		}, 2000);
-	}
+	$: console.log($cookieCounter, cookies.length);
 </script>
 
 <div class=" m-auto mb-10 mt-24 h-full max-w-7xl border-1 border-bgrey p-5">
-	<div class="my-10 grid grid-cols-12 gap-x-5 md:h-full">
-		<div class="col-span-7 flex-wrap place-content-center px-5">
+	<div class="my-10 grid grid-cols-12 gap-x-6 md:h-full">
+		<div class="col-span-7 flex-wrap px-5">
 			<div class="grid grid-cols-4 gap-x-8 md:grid-cols-10 md:gap-x-0">
 				{#each cookies as Cookie}
 					<Cookie width={52} height={52} />
@@ -55,7 +51,7 @@
 			</div>
 
 			<div>
-				<progress class="w-full rounded-lg" value={$progress}></progress>
+				<progress class="w-full rounded-lg bg-greenC" value={$progress} max="50"></progress>
 			</div>
 
 			<div class="justify-between px-0 md:flex md:px-5">
@@ -70,12 +66,17 @@
 						if (count < maxCookies) {
 							increment();
 							cookies = [...cookies, Cookie];
-							if ($cookieCounter === 50) {
-								setInterval(() => {
+							if ($cookieCounter >= 50) {
+								const interval = setInterval(() => {
 									decrement();
 									cookies.pop();
 									cookies = cookies;
-								}, 100);
+								}, 75);
+								setTimeout(() => {
+									clearInterval(interval);
+									reset();
+									cookies = [];
+								}, 6500);
 							}
 						}
 					}}>Add</button
@@ -103,5 +104,24 @@
 <style lang="postcss">
 	button {
 		@apply mb-1 rounded-lg bg-greenC px-5 py-3 font-sansSerif font-bold;
+	}
+
+	progress {
+		width: 100%;
+		height: .9rem;
+		-webkit-appearance: none;
+		appearance: none;
+	}
+
+	progress::-webkit-progress-bar {
+		@apply rounded-lg bg-white;
+	}
+
+	progress::-webkit-progress-value {
+		@apply rounded-lg bg-sky-500;
+	}
+
+	progress::-moz-progress-bar {
+		@apply rounded-lg bg-sky-500;
 	}
 </style>

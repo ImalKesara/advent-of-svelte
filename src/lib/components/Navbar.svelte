@@ -12,11 +12,11 @@
 	<div
 		class="m-auto grid max-w-8xl grid-cols-1 items-center rounded-lg border-1 border-bgrey p-5 md:grid-cols-2"
 	>
-		<div class="grid grid-cols-12 items-center gap-x-10 md:grid-cols-10">
-			<a class="justify-items-left col-span-5 grid md:col-span-1" href="./"
+		<div class="grid grid-cols-12 items-center gap-x-12 md:grid-cols-10">
+			<a class=" col-span-1 grid justify-items-center md:col-span-1" href="./"
 				><SvelteLogo width={34} height={34} /></a
 			>
-			<p class="col-span-7 text-center md:text-left">Advent of svelte</p>
+			<p class="col-span-5 font-bold">Advent of Svelte</p>
 		</div>
 		<nav class="hidden md:block">
 			<ul class="grid grid-cols-10">
