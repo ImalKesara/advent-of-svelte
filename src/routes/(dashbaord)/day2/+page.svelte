@@ -33,13 +33,13 @@
 						<Smile width={128} height={128} />
 					{:else if $cookieCounter <= 10}
 						<SmileMore width={128} height={128} />
-					{:else if $cookieCounter <= 25}
-						<Moree width={128} height={128} />
 					{:else if $cookieCounter <= 35}
-						<Neutral width={128} height={128} />
+						<Moree width={128} height={128} />
 					{:else if $cookieCounter <= 40}
+						<Neutral width={128} height={128} />
+					{:else if $cookieCounter <= 43}
 						<Notgood width={128} height={128} />
-					{:else if $cookieCounter <= 45}
+					{:else if $cookieCounter <= 48}
 						<Wzoo width={128} height={128} />
 					{:else if $cookieCounter <= 50}
 						<Gross width={128} height={128} />
@@ -108,7 +108,7 @@
 
 	progress {
 		width: 100%;
-		height: .9rem;
+		height: 0.9rem;
 		-webkit-appearance: none;
 		appearance: none;
 	}
