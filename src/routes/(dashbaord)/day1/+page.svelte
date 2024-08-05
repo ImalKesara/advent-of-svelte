@@ -12,11 +12,8 @@
 	import Pagination from './Pagination.svelte';
 	import Done from '$lib/components/Icon/day One icons/Done.svelte';
 	import Empty from '$lib/components/Icon/day One icons/Empty.svelte';
+	import { loadniceChilds ,loadnaughtChilds, findGoodChild,findbadChild} from '$lib/utils/dayOne/dayOne';
 
-	let niceChildren: number = 0;
-	let naughtyChildren: number = 0;
-	let nicestChild: string;
-	let naughtChild: string;
 	let filterName: string = '';
 	let copyPersons: Persons[] = [];
 	let filterArray: Persons[];
@@ -31,55 +28,12 @@
 	let rowsPerpage: number = 10; //dynamic value default 10
 	let rear: number = rowsPerpage; //dynamic value
 
+	
 	onMount(() => {
 		loadPersons();
 		copyPersons = get(persons);
-		updateAll();
 	});
 
-	//gets all the good childrens
-	const loadniceChilds = () => {
-		niceChildren = 0;
-		copyPersons.forEach((person) => {
-			if (person.tally > 0) {
-				niceChildren++;
-			}
-			return;
-		});
-	};
-
-	//gets all the naughty childrens
-	const loadnaughtChilds = () => {
-		naughtyChildren = 0;
-		copyPersons.forEach((person) => {
-			if (person.tally < 0) {
-				naughtyChildren++;
-			}
-			return;
-		});
-	};
-
-	const getSmallestandLargest = () => {
-		let smallest: number = copyPersons[1].tally;
-		let largest: number = copyPersons[1].tally;
-
-		copyPersons.forEach((person) => {
-			if (person.tally >= largest) {
-				largest = person.tally;
-				nicestChild = person.name;
-			}
-			if (person.tally <= smallest) {
-				smallest = person.tally;
-				naughtChild = person.name;
-			}
-		});
-	};
-
-	const updateAll = () => {
-		loadniceChilds();
-		loadnaughtChilds();
-		getSmallestandLargest();
-	};
 
 	const toggleSideBar = () => {
 		isSideBarShowing = !isSideBarShowing;
@@ -96,9 +50,8 @@
 		if (addName === '') {
 			return;
 		}
-		copyPersons = [...copyPersons, { name: addName, tally: addTally }];
+		$persons = [...$persons, { name: addName, tally: addTally }];
 		addedByMe++;
-		updateAll();
 	};
 	const paginationIncrease = () => {
 		if (currentPage < totalPages) {
@@ -128,8 +81,8 @@
 	};
 
 	$: {
-		totalPages = Math.ceil(copyPersons.length / rowsPerpage);
-		filterArray = copyPersons
+		totalPages = Math.ceil($persons.length / rowsPerpage);
+		filterArray = $persons
 			.filter((person) => {
 				if (person.name.toLowerCase().includes(filterName.toLowerCase())) {
 					return person.name;
@@ -150,7 +103,7 @@
 				<Totallogo />
 			</div>
 			<div class="col-span-3">
-				<span class="text-3xl"><b>{copyPersons.length}</b></span>
+				<span class="text-3xl"><b>{$persons.length}</b></span>
 				<span class=" block text-sm text-gray-500">Ready for Gifts</span>
 			</div>
 		</div>
@@ -164,8 +117,8 @@
 				<Nicechild />
 			</div>
 			<div class="col-span-3">
-				<span class="text-3xl"><b>{nicestChild}</b></span>
-				<span class=" block text-sm text-gray-500">{niceChildren} are nice childs.</span>
+				<span class="text-3xl"><b>{findGoodChild($persons)}</b></span>
+				<span class=" block text-sm text-gray-500">{loadniceChilds($persons)} are nice childs.</span>
 			</div>
 		</div>
 
@@ -178,8 +131,8 @@
 				<NaughtChild />
 			</div>
 			<div class="col-span-3">
-				<span class="text-3xl"><b>{naughtChild}</b></span>
-				<span class=" block text-sm text-gray-500">{naughtyChildren} are naughty childs.</span>
+				<span class="text-3xl"><b>{findbadChild($persons)}</b></span>
+				<span class=" block text-sm text-gray-500">{loadnaughtChilds($persons)} are naughty childs.</span>
 			</div>
 		</div>
 
