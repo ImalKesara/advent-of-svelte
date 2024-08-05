@@ -12,13 +12,19 @@
 	import Pagination from './Pagination.svelte';
 	import Done from '$lib/components/Icon/day One icons/Done.svelte';
 	import Empty from '$lib/components/Icon/day One icons/Empty.svelte';
-	import { loadniceChilds ,loadnaughtChilds, findGoodChild,findbadChild} from '$lib/utils/dayOne/dayOne';
-
+	import {
+		loadniceChilds,
+		loadnaughtChilds,
+		findGoodChild,
+		findbadChild,
+		toggleSideBar
+	} from '$lib/utils/dayOne/dayOne';
+	
+	let isSideBarShowing: boolean = false;
 	let filterName: string = '';
 	let copyPersons: Persons[] = [];
 	let filterArray: Persons[];
 	let addedByMe: number = 0;
-	let isSideBarShowing: boolean = false;
 	let popupMenu: boolean = false;
 	let addName: string = 'Arthur Mogan';
 	let addTally: number = 69;
@@ -28,16 +34,10 @@
 	let rowsPerpage: number = 10; //dynamic value default 10
 	let rear: number = rowsPerpage; //dynamic value
 
-	
 	onMount(() => {
 		loadPersons();
 		copyPersons = get(persons);
 	});
-
-
-	const toggleSideBar = () => {
-		isSideBarShowing = !isSideBarShowing;
-	};
 
 	const popUpFunc = () => {
 		popupMenu = true;
@@ -118,7 +118,8 @@
 			</div>
 			<div class="col-span-3">
 				<span class="text-3xl"><b>{findGoodChild($persons)}</b></span>
-				<span class=" block text-sm text-gray-500">{loadniceChilds($persons)} are nice childs.</span>
+				<span class=" block text-sm text-gray-500">{loadniceChilds($persons)} are nice childs.</span
+				>
 			</div>
 		</div>
 
@@ -132,7 +133,9 @@
 			</div>
 			<div class="col-span-3">
 				<span class="text-3xl"><b>{findbadChild($persons)}</b></span>
-				<span class=" block text-sm text-gray-500">{loadnaughtChilds($persons)} are naughty childs.</span>
+				<span class=" block text-sm text-gray-500"
+					>{loadnaughtChilds($persons)} are naughty childs.</span
+				>
 			</div>
 		</div>
 
@@ -170,7 +173,12 @@
 				</div>
 			</div>
 			<div class="flex justify-end">
-				<button class="rounded-full bg-greenC px-5 py-2" on:click={toggleSideBar}>Add child</button>
+				<button
+					class="rounded-full bg-greenC px-5 py-2"
+					on:click={() => {
+						isSideBarShowing = toggleSideBar();
+					}}>Add child</button
+				>
 			</div>
 		</div>
 		<!-- Rows -->
@@ -206,8 +214,11 @@
 		: 'hide'}"
 >
 	<div class="container relative grid grid-cols-2 gap-4">
-		<button class="col-span-2 grid cursor-pointer justify-end" on:click={toggleSideBar}
-			><Close /></button
+		<button
+			class="col-span-2 grid cursor-pointer justify-end"
+			on:click={() => {
+				isSideBarShowing = toggleSideBar();
+			}}><Close /></button
 		>
 		<p class="col-span-2">Add Child</p>
 		<p class="col-span-2">
@@ -239,7 +250,9 @@
 				class=" cursor-pointer rounded-full bg-greenC px-5 py-2"
 				on:click={addChild}
 				on:click={popUpFunc}
-				on:click={toggleSideBar}>Save Changes</button
+				on:click={() => {
+					isSideBarShowing = toggleSideBar();
+				}}>Save Changes</button
 			>
 		</div>
 	</div>

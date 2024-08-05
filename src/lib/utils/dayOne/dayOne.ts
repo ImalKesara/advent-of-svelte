@@ -4,6 +4,7 @@ let niceChildrens: number;
 let naughtyChildrens: number;
 let nicestChild: string;
 let naughtChild: string;
+let isSideBarShowing :boolean  =false;
 
 export const loadniceChilds = (persons: Persons[]): number => {
 	niceChildrens = 0;
@@ -37,6 +38,10 @@ export const findbadChild = (persons: Persons[]): string => {
 		}
 	});
 	return naughtChild;
+};
+
+export const toggleSideBar = () : boolean => {
+	return isSideBarShowing = !isSideBarShowing;
 };
 
 /**
