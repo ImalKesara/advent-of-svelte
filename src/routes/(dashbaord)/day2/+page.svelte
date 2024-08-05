@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { fade } from 'svelte/transition';
 	import Exhaust from '$lib/components/Icon/day Two icons/Exhaust.svelte';
 	import Neutral from '$lib/components/Icon/day Two icons/Neutral.svelte';
 	import Gross from '$lib/components/Icon/day Two icons/Gross.svelte';
@@ -20,7 +21,9 @@
 		<div class="col-span-7 h-128 flex-wrap gap-20 md:h-full md:place-content-center">
 			<div class="grid grid-cols-5 md:grid-cols-10">
 				{#each cookies as Cookie}
-					<Cookie width={52} height={52} />
+					<div transition:fade={{ delay: 75, duration: 150 }}>
+						<Cookie width={52} height={52} />
+					</div>
 				{/each}
 			</div>
 		</div>
