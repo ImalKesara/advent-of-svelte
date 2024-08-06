@@ -96,7 +96,7 @@
 			</div>
 			<div class="col-span-3">
 				<span class="text-3xl"><b>{$persons.length}</b></span>
-				<span class=" block text-sm text-gray-500">Ready for Gifts</span>
+				<span class=" block text-sm text-gray-500">Ready For Gifts</span>
 			</div>
 		</div>
 
@@ -110,7 +110,7 @@
 			</div>
 			<div class="col-span-3">
 				<span class="text-3xl"><b>{findGoodChild($persons)}</b></span>
-				<span class=" block text-sm text-gray-500">{loadniceChilds($persons)} are nice childs.</span
+				<span class=" block text-sm text-gray-500">{loadniceChilds($persons)} Are Nice Childs.</span
 				>
 			</div>
 		</div>
@@ -126,7 +126,7 @@
 			<div class="col-span-3">
 				<span class="text-3xl"><b>{findbadChild($persons)}</b></span>
 				<span class=" block text-sm text-gray-500"
-					>{loadnaughtChilds($persons)} are naughty childs.</span
+					>{loadnaughtChilds($persons)} Are Naughty Childs.</span
 				>
 			</div>
 		</div>
@@ -135,13 +135,13 @@
 		<div
 			class="grid grid-cols-4 items-center gap-3 rounded-lg border-1 border-bgrey bg-semiBlacked p-5"
 		>
-			<div class=" col-span-3">Added by You</div>
+			<div class=" col-span-3">Added By You</div>
 			<div class=" col-span-1 flex justify-end">
 				<Addbyme />
 			</div>
 			<div class="col-span-3">
 				<span class="text-3xl"><b>{addedByMe}</b></span>
-				<span class=" block text-sm text-gray-500">Reset on Reload</span>
+				<span class=" block text-sm text-gray-500">Reset On Reload</span>
 			</div>
 		</div>
 	</div>
@@ -169,7 +169,7 @@
 					class="rounded-full bg-greenC px-5 py-2"
 					on:click={() => {
 						isSideBarShowing = toggleSideBar();
-					}}>Add child</button
+					}}>Add Child</button
 				>
 			</div>
 		</div>

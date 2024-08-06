@@ -15,10 +15,10 @@
 	>
 		{#if addName === ''}
 			<p><Empty /></p>
-			<p class="text-red-500">Text field is empty</p>
+			<p class="text-red-500">Text Field Is Empty</p>
 		{:else}
 			<p><Done width={32} height={32} /></p>
-			<p class="text-green-500">Successfully added {addName}</p>
+			<p class="text-green-500">Successfully Added {addName}</p>
 		{/if}
 	</div>
 </div>
