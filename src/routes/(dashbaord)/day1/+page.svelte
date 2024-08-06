@@ -7,10 +7,8 @@
 	import Add from '$lib/components/Icon/day One icons/Add.svelte';
 	import { persons, loadPersons } from '$lib/stores/dayoneStore';
 	import { onMount } from 'svelte';
-	import { get } from 'svelte/store';
 	import ChildrenRows from './ChildrenRows.svelte';
 	import Pagination from './Pagination.svelte';
-
 	import {
 		loadniceChilds,
 		loadnaughtChilds,
@@ -22,7 +20,6 @@
 
 	let isSideBarShowing: boolean = false;
 	let filterName: string = '';
-	let copyPersons: Persons[] = [];
 	let filterArray: Persons[];
 	let addedByMe: number = 0;
 	let popupMenu: boolean = false;
@@ -36,7 +33,6 @@
 
 	onMount(() => {
 		loadPersons();
-		copyPersons = get(persons);
 	});
 
 	const popUpFunc = () => {
@@ -200,7 +196,6 @@
 
 		<!-- //pagition -->
 		<Pagination
-			{copyPersons}
 			{currentPage}
 			{totalPages}
 			on:updateRowsPerPage={sample}
@@ -260,10 +255,7 @@
 	</div>
 </div>
 
-
-
 <style lang="postcss">
-	
 	.show {
 		@apply transition-all duration-300;
 		opacity: 1;

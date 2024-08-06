@@ -1,8 +1,9 @@
 <script lang="ts">
+	import { persons } from '$lib/stores/dayoneStore.ts';
 	import { createEventDispatcher } from 'svelte';
 	import Rightarrow from '$lib/components/Icon/day One icons/Rightarrow.svelte';
 	import Leftarrow from '$lib/components/Icon/day One icons/Leftarrow.svelte';
-	export let copyPersons;
+	// export let copyPersons;
 	export let currentPage: number;
 	export let totalPages;
 	export let value: number = 10;
@@ -24,7 +25,7 @@
 
 <div class="grid grid-cols-2 gap-5 p-5 md:gap-0">
 	<div class="col-span-2 text-center text-sm md:col-span-1 md:text-left">
-		Total Children(s): <span class="font-thin">{copyPersons.length}</span>
+		Total Children(s): <span class="font-thin">{$persons.length}</span>
 	</div>
 	<div class="col-span-2 grid grid-cols-12 items-center gap-3 text-sm md:col-span-1 md:gap-0">
 		<div class=" col-span-12 justify-center md:col-span-6">
