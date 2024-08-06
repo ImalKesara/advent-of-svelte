@@ -7,7 +7,6 @@
 	import Add from '$lib/components/Icon/day One icons/Add.svelte';
 	import { persons, loadPersons } from '$lib/stores/dayoneStore';
 	import { onMount } from 'svelte';
-	import ChildrenRows from './ChildrenRows.svelte';
 	import Pagination from './Pagination.svelte';
 	import {
 		loadniceChilds,
@@ -55,7 +54,6 @@
 			currentPage++;
 			front += rowsPerpage;
 			rear += rowsPerpage;
-			console.log(front, rear);
 		}
 	};
 
@@ -64,17 +62,12 @@
 			currentPage--;
 			front -= rowsPerpage;
 			rear -= rowsPerpage;
-			console.log(front, rear);
 		}
 	};
 
 	const sample = (event: any) => {
 		rowsPerpage = event.detail;
 		rear = rowsPerpage;
-	};
-
-	const tagFilter = () => {
-		console.log('working');
 	};
 
 	$: {
@@ -167,7 +160,7 @@
 				<div
 					class="col-span-2 flex items-center justify-around gap-0 rounded-full border-2 border-dotted border-bgrey px-8 hover:bg-bgrey md:col-span-1 md:px-2"
 				>
-					<button on:click={tagFilter}><Add /></button>
+					<button><Add /></button>
 					<span>Tag</span>
 				</div>
 			</div>
@@ -234,9 +227,9 @@
 		<div class="col-span-2 grid justify-end">
 			<button
 				class=" cursor-pointer rounded-full bg-greenC px-5 py-2"
-				on:click={addChild}
-				on:click={popUpFunc}
 				on:click={() => {
+					addChild();
+					popUpFunc();
 					isSideBarShowing = toggleSideBar();
 				}}>Save Changes</button
 			>
@@ -246,8 +239,7 @@
 
 <style lang="postcss">
 	.show {
-		@apply transition-all duration-300;
-		opacity: 1;
+		@apply opacity-100 transition-all duration-300;
 		transform: translateX(0);
 		transition:
 			opacity 0.6s ease,

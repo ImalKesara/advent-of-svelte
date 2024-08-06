@@ -3,7 +3,6 @@
 	import { createEventDispatcher } from 'svelte';
 	import Rightarrow from '$lib/components/Icon/day One icons/Rightarrow.svelte';
 	import Leftarrow from '$lib/components/Icon/day One icons/Leftarrow.svelte';
-	// export let copyPersons;
 	export let currentPage: number;
 	export let totalPages;
 	export let value: number = 10;
