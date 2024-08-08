@@ -1,5 +1,5 @@
 <script>
-	import Footer from '$lib/components/Footer.svelte';
+	import Footer from '$lib/components/NavAndFooter/Footer.svelte';
 	import One from '$lib/components/NumberIcons/One.svelte';
 	import Two from '$lib/components/NumberIcons/Two.svelte';
 	import Three from '$lib/components/NumberIcons/Three.svelte';

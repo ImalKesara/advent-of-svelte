@@ -7,9 +7,9 @@
 	import Add from '$lib/components/Icon/day One icons/Add.svelte';
 	import { persons, loadPersons } from '$lib/stores/dayoneStore';
 	import { onMount } from 'svelte';
-	import Popup from './Popup.svelte';
-	import Rows from './Rows.svelte';
-	import Pagination from './Pagination.svelte';
+	import Popup from '$lib/components/DayOne/Popup.svelte';
+	import Rows from '$lib/components/DayOne/Rows.svelte';
+	import Pagination from '$lib/components/DayOne/Pagination.svelte';
 	import {
 		loadniceChilds,
 		loadnaughtChilds,
