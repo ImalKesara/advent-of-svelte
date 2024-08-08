@@ -7,6 +7,8 @@
 	import Add from '$lib/components/Icon/day One icons/Add.svelte';
 	import { persons, loadPersons } from '$lib/stores/dayoneStore';
 	import { onMount } from 'svelte';
+	import Popup from './Popup.svelte';
+	import Rows from './Rows.svelte';
 	import Pagination from './Pagination.svelte';
 	import {
 		loadniceChilds,
@@ -15,8 +17,6 @@
 		findbadChild,
 		toggleSideBar
 	} from '$lib/utils/dayOne/dayOne';
-	import Popup from './Popup.svelte';
-	import Rows from './Rows.svelte';
 
 	let isSideBarShowing: boolean = false;
 	let filterName: string = '';
