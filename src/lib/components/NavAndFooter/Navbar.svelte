@@ -8,7 +8,7 @@
 	};
 </script>
 
-<header class="fixed left-0 top-0 m-1 w-full shadow-md backdrop-blur-lg backdrop-filter">
+<header class="fixed  left-0 top-0 m-1 w-full shadow-md backdrop-blur-lg backdrop-filter">
 	<div
 		class="m-auto grid max-w-8xl grid-cols-1 items-center rounded-lg border-1 border-bgrey p-5 md:grid-cols-2"
 	>
