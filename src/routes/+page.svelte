@@ -1,15 +1,15 @@
 <script>
 	import Footer from '$lib/components/NavAndFooter/Footer.svelte';
-	import One from '$lib/components/NumberIcons/One.svelte';
-	import Two from '$lib/components/NumberIcons/Two.svelte';
-	import Three from '$lib/components/NumberIcons/Three.svelte';
-	import Four from '$lib/components/NumberIcons/Four.svelte';
-	import Five from '$lib/components/NumberIcons/Five.svelte';
-	import Six from '$lib/components/NumberIcons/Six.svelte';
-	import Seven from '$lib/components/NumberIcons/Seven.svelte';
-	import Eight from '$lib/components/NumberIcons/Eight.svelte';
-	import Nine from '$lib/components/NumberIcons/Nine.svelte';
-	import Zero from '$lib/components/NumberIcons/Zero.svelte';
+	import One from '$lib/components/Icon/NumberIcons/One.svelte';
+	import Two from '$lib/components/Icon/NumberIcons/Two.svelte';
+	import Three from '$lib/components/Icon/NumberIcons/Three.svelte';
+	import Four from '$lib/components/Icon/NumberIcons/Four.svelte';
+	import Five from '$lib/components/Icon/NumberIcons/Five.svelte';
+	import Six from '$lib/components/Icon/NumberIcons/Six.svelte';
+	import Seven from '$lib/components/Icon/NumberIcons/Seven.svelte';
+	import Eight from '$lib/components/Icon/NumberIcons/Eight.svelte';
+	import Nine from '$lib/components/Icon/NumberIcons/Nine.svelte';
+	import Zero from '$lib/components/Icon/NumberIcons/Zero.svelte';
 
 	const components = [Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine];
 	const days = [

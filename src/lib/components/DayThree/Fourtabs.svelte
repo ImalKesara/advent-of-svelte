@@ -5,6 +5,7 @@
 	import CreatedTrip from '$lib/components/Icon/day Three icons/CreatedTrip.svelte';
 	import Weight from '$lib/components/Icon/day Three icons/Weight.svelte';
 	import { totalWeight, avgTrips } from '$lib/utils/dayThree/dayThree';
+	
 </script>
 
 <div class="m-auto mt-24 grid max-w-7xl grid-cols-2 gap-5 p-2 md:grid-cols-4">
