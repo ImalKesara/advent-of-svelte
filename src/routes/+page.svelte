@@ -55,14 +55,43 @@
 				<div class="col-span-4">
 					<a href={day.link}>
 						{#if day.day < 10}
-							<svelte:component this={components[day.day]} width={100} height={100} />
+							<svelte:component
+								this={components[day.day]}
+								fill={day.status === 'Completed'
+									? '#30f558'
+									: day.status === 'Ongoing'
+										? 'yellow'
+										: day.status === 'Pending'
+											? 'white'
+											: 'white'}
+								width={100}
+								height={100}
+							/>
 						{:else}
 							<svelte:component
 								this={components[Math.floor(day.day / 10)]}
 								width={100}
 								height={100}
+								fill={day.status === 'Completed'
+									? '#30f558'
+									: day.status === 'Ongoing'
+										? 'yellow'
+										: day.status === 'Pending'
+											? 'white'
+											: 'yellow'}
 							/>
-							<svelte:component this={components[day.day % 10]} width={100} height={100} />
+							<svelte:component
+								this={components[day.day % 10]}
+								width={100}
+								height={100}
+								fill={day.status === 'Completed'
+									? '#30f558'
+									: day.status === 'Ongoing'
+										? 'yellow'
+										: day.status === 'Pending'
+											? 'white'
+											: 'white'}
+							/>
 						{/if}
 					</a>
 				</div>
