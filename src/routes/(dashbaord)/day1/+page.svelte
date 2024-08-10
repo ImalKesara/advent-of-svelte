@@ -160,7 +160,7 @@
 				<div
 					class="col-span-2 flex items-center justify-around gap-0 rounded-full border-2 border-dotted border-bgrey px-8 hover:bg-bgrey md:col-span-1 md:px-2"
 				>
-					<button><Add /></button>
+					<button><Add fill={'white'}/></button>
 					<span>Tag</span>
 				</div>
 			</div>

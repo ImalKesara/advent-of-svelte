@@ -1,0 +1,20 @@
+<script lang="ts">
+	export let open = false;
+	import { slide } from 'svelte/transition';
+	const handleClick = () => open = !open
+</script>
+
+<div class="accordion">
+	<div class="header flex justify-around">
+		<div class="text">
+			<slot name="head"></slot>
+		</div>
+
+		<button on:click={handleClick}>+</button>
+	</div>
+	{#if open}
+		<div class="details" transition:slide>
+			<slot name="details"></slot>
+		</div>
+	{/if}
+</div>
