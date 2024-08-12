@@ -33,7 +33,7 @@
 			<Weight />
 		</div>
 		<div class="col-span-4">
-			<span class="text-3xl"><b>{totalWeight($children)}</b></span>
+			<span class="text-3xl"><b>{totalWeight($children).toFixed(2)}</b></span>
 			<span class=" block text-sm text-gray-500"> Total Weight of gifts for the children.</span>
 		</div>
 	</div>
