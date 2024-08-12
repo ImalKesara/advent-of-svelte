@@ -48,7 +48,7 @@
 		return { name: info.name, weight: info.weight };
 	});
 
-	$:console.log(tripCollection.length)
+	$: console.log(tripCollection);
 </script>
 
 <div class="m-auto grid max-w-7xl grid-cols-2 gap-5 p-2 md:grid-cols-12">
@@ -62,34 +62,34 @@
 		</div>
 	</div>
 	<div class="col-span-9">
-		<div class="grid grid-cols-3 rounded-lg bg-bgrey px-5 py-10">
+		<div class="grid grid-cols-3 gap-2 rounded-lg">
 			<!-- repeatition part -->
 			{#each tripCollection as trip}
-				<div class=" rounded-lg bg-gray-800 p-1 px-2 py-3">
+				<div class=" rounded-lg bg-bgrey p-2">
 					<div class="flex items-center justify-between">
 						<p>Trip {trip.id}</p>
 						<Weight />
 					</div>
-					<div class="">
-						<p><span class="text-3xl"> {tripCollection[index].gifts.length}  </span>  Child(s)</p>
-						<span class="text-sm"
-							>Weight : <b>
+					<div>
+						<p><span class="text-3xl"> {tripCollection[index].gifts.length} </span>Child(s)</p>
+						<p class="text-sm leading-5">
+							Weight : <b>
 								{tripCollection[index].gifts
 									.reduce((accur, curr) => accur + curr.weight, 0)
 									.toFixed(2)}
-							</b>kg
-						</span>
+							</b>Kg
+						</p>
 					</div>
-					<div class="grid gap-y-1">
+					<div class="mt-3 grid grid-cols-2 gap-x-1">
 						<button
-							class="w-full rounded-lg bg-orange-500 px-2 py-3"
+							class="w-full rounded-full bg-orange-500 px-2 py-3"
 							on:click={() => {
 								console.log(trip.id);
 								index = tripCollection.findIndex((acc) => acc.id === trip.id);
 							}}>Update</button
 						>
 						<button
-							class="w-full rounded-lg bg-red-500 px-2 py-3"
+							class="w-full rounded-full bg-red-500 px-2 py-3"
 							on:click={() => {
 								if (tripCollection.length > 1) {
 									console.log(trip.id);
@@ -123,7 +123,7 @@
 						><button
 							class="flex gap-x-1 rounded-lg bg-greenC px-2 py-3"
 							on:click={() => addChildren(child.name, child.weight)}
-							><Add fill={'black'} />Add to trip {tripId}</button
+							><Add fill={'black'} />Add to trip {tripCollection[index].id}</button
 						></td
 					>
 				</tr>
@@ -133,33 +133,34 @@
 
 	<!-- accordian -->
 	<div class=" col-span-6">
-		<Accodion open={true}>
-			<span slot="head">Trip {tripId}</span>
-			<div slot="details">
-				<table class="w-full">
-					<tr>
-						<td>Name</td>
-						<td>Weight</td>
-						<td>Action</td>
-					</tr>
-
-					{#each fillerArr as p}
+		{#each tripCollection as collection}
+			<Accodion open={true}>
+				<span slot="head">Trip {collection.id} </span>
+				<div slot="details">
+					<table class="w-full">
 						<tr>
-							<td>{p.name}</td>
-							<td>{p.weight}</td>
-							<td
-								><button
-									on:click={() => {
-										$children.unshift({ name: p.name, weight: p.weight });
-										$children = $children;
-										delChildren(p.name);
-									}}><DeleteThree /></button
-								></td
-							>
+							<td>Name</td>
+							<td>Weight</td>
+							<td>Action</td>
 						</tr>
-					{/each}
-				</table>
-			</div>
-		</Accodion>
+						{#each collection.gifts as p}
+							<tr>
+								<td>{p.name}</td>
+								<td>{p.weight}</td>
+								<td
+									><button
+										on:click={() => {
+											$children.unshift({ name: p.name, weight: p.weight });
+											$children = $children;
+											delChildren(p.name);
+										}}><DeleteThree /></button
+									></td
+								>
+							</tr>
+						{/each}
+					</table>
+				</div>
+			</Accodion>
+		{/each}
 	</div>
 </div>
