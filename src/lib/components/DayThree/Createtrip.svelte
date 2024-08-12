@@ -6,9 +6,11 @@
 	import Accodion from './Accodion.svelte';
 
 	// CreateTrip svelte
-	let trip: number = 1;
+	let tripId: number = 1;
+	let index: number = 0;
 
 	let tripCollection: Trips[] = [
+		//index is 0
 		{
 			id: 1, //trip === 1
 			gifts: []
@@ -16,13 +18,13 @@
 	];
 
 	const createTrip = () => {
-		trip++;
-		tripCollection = [...tripCollection, { id: trip, gifts: [] }]; // [{ name: 'kesara', weight: 55 }]
+		tripId++;
+		tripCollection = [...tripCollection, { id: tripId, gifts: [] }]; // [{ name: 'kesara', weight: 55 }]
 		console.log(tripCollection);
 	};
 
 	const addChildren = (name: string, weight: number) => {
-		tripCollection[0].gifts.push({ name: name, weight: weight });
+		tripCollection[index].gifts.push({ name: name, weight: weight });
 		tripCollection = tripCollection;
 		$children = $children.filter((child) => child.name !== name);
 		console.log(fillerArr);
@@ -31,7 +33,7 @@
 
 	const delChildren = (name: string) => {
 		tripCollection = tripCollection.map((sample) => {
-			if (sample.id === 1) {
+			if (sample.id === tripId) {
 				return {
 					...sample,
 					gifts: sample.gifts.filter((delName) => delName.name !== name)
@@ -42,12 +44,11 @@
 		fillerArr = fillerArr.filter((delName) => delName.name !== name);
 	};
 
-	$: fillerArr = tripCollection[0].gifts.filter((info) => {
+	$: fillerArr = tripCollection[index].gifts.filter((info) => {
 		return { name: info.name, weight: info.weight };
 	});
 
-	$: console.log(fillerArr);
-	$: console.log(tripCollection);
+	$:console.log(tripCollection.length)
 </script>
 
 <div class="m-auto grid max-w-7xl grid-cols-2 gap-5 p-2 md:grid-cols-12">
@@ -70,9 +71,13 @@
 						<Weight />
 					</div>
 					<div class="">
-						<p>{fillerArr.length} <span> Childs</span></p>
-						<span
-							>Weight<b> {` ${fillerArr.reduce((accur, curr) => accur + curr.weight, 0)}`} </b>kg
+						<p><span class="text-3xl"> {tripCollection[index].gifts.length}  </span>  Child(s)</p>
+						<span class="text-sm"
+							>Weight : <b>
+								{tripCollection[index].gifts
+									.reduce((accur, curr) => accur + curr.weight, 0)
+									.toFixed(2)}
+							</b>kg
 						</span>
 					</div>
 					<div class="grid gap-y-1">
@@ -80,12 +85,14 @@
 							class="w-full rounded-lg bg-orange-500 px-2 py-3"
 							on:click={() => {
 								console.log(trip.id);
+								index = tripCollection.findIndex((acc) => acc.id === trip.id);
 							}}>Update</button
 						>
 						<button
 							class="w-full rounded-lg bg-red-500 px-2 py-3"
 							on:click={() => {
 								if (tripCollection.length > 1) {
+									console.log(trip.id);
 									tripCollection = tripCollection.filter((something) => trip.id !== something.id);
 								} else {
 									console.log('there must be atleast one trip');
@@ -116,7 +123,7 @@
 						><button
 							class="flex gap-x-1 rounded-lg bg-greenC px-2 py-3"
 							on:click={() => addChildren(child.name, child.weight)}
-							><Add fill={'black'} />Add to trip {trip}</button
+							><Add fill={'black'} />Add to trip {tripId}</button
 						></td
 					>
 				</tr>
@@ -127,7 +134,7 @@
 	<!-- accordian -->
 	<div class=" col-span-6">
 		<Accodion open={true}>
-			<span slot="head">Trip {trip}</span>
+			<span slot="head">Trip {tripId}</span>
 			<div slot="details">
 				<table class="w-full">
 					<tr>
