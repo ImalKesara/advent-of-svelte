@@ -62,19 +62,19 @@
 		</div>
 	</div>
 	<div class="col-span-9">
-		<div class="grid grid-cols-3 gap-2 rounded-lg">
+		<div class="grid grid-cols-3 gap-2 rounded-lg ">
 			<!-- repeatition part -->
 			{#each tripCollection as trip}
-				<div class=" rounded-lg bg-bgrey p-2">
+				<div class=" rounded-lg bg-bgrey py-7 px-4">
 					<div class="flex items-center justify-between">
 						<p>Trip {trip.id}</p>
 						<Weight />
 					</div>
 					<div>
-						<p><span class="text-3xl"> {tripCollection[index].gifts.length} </span>Child(s)</p>
+						<p><span class="text-3xl"> {trip.gifts.length} </span>Child(s)</p>
 						<p class="text-sm leading-5">
 							Weight : <b>
-								{tripCollection[index].gifts
+								{trip.gifts
 									.reduce((accur, curr) => accur + curr.weight, 0)
 									.toFixed(2)}
 							</b>Kg
