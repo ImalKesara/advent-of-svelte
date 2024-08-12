@@ -5,8 +5,8 @@
 </script>
 
 <div class="accordion">
-	<div class="header flex justify-around">
-		<div class="text">
+	<div class="header flex justify-between px-1">
+		<div class="text  hover:underline">
 			<slot name="head"></slot>
 		</div>
 

@@ -62,10 +62,10 @@
 		</div>
 	</div>
 	<div class="col-span-9">
-		<div class="grid grid-cols-3 gap-2 rounded-lg ">
+		<div class="grid grid-cols-3 gap-x-5 gap-y-3 rounded-lg">
 			<!-- repeatition part -->
 			{#each tripCollection as trip}
-				<div class=" rounded-lg bg-bgrey py-7 px-4">
+				<div class=" rounded-lg bg-bgrey px-4 py-7">
 					<div class="flex items-center justify-between">
 						<p>Trip {trip.id}</p>
 						<Weight />
@@ -74,9 +74,7 @@
 						<p><span class="text-3xl"> {trip.gifts.length} </span>Child(s)</p>
 						<p class="text-sm leading-5">
 							Weight : <b>
-								{trip.gifts
-									.reduce((accur, curr) => accur + curr.weight, 0)
-									.toFixed(2)}
+								{trip.gifts.reduce((accur, curr) => accur + curr.weight, 0).toFixed(2)}
 							</b>Kg
 						</p>
 					</div>
@@ -108,22 +106,26 @@
 
 <div class=" m-auto grid max-w-7xl grid-cols-12 gap-5 p-2">
 	<!-- table -->
-	<div class=" col-span-6">
-		<input type="text" placeholder="Filter name..." class="w-full" />
+	<div class=" col-span-6 rounded-lg border-1 border-bgrey p-5">
+		<input
+			type="text"
+			placeholder="Filter name..."
+			class="w-full rounded-full border-1 border-bgrey bg-transparent px-4 py-3 outline-none"
+		/>
 		<table class="w-full">
-			<tr class="">
+			<tr class="text-lg">
 				<td class="font-bold">Name</td>
 				<td class="font-bold">Weight</td>
 			</tr>
 			{#each $children as child, i}
-				<tr>
+				<tr class="border-t-[0.5px] border-bgrey">
 					<td class=" w-2/4">{child.name}</td>
 					<td class=" w-1/4">{child.weight}</td>
-					<td class="w-1/4 font-bold text-black"
+					<td class="w-1/4 font-bold text-white"
 						><button
 							class="flex gap-x-1 rounded-lg bg-greenC px-2 py-3"
 							on:click={() => addChildren(child.name, child.weight)}
-							><Add fill={'black'} />Add to trip {tripCollection[index].id}</button
+							><Add fill={'white'} />Add To Trip {tripCollection[index].id}</button
 						></td
 					>
 				</tr>
@@ -132,22 +134,22 @@
 	</div>
 
 	<!-- accordian -->
-	<div class=" col-span-6">
+	<div class="col-span-6 border-1 p-5 border-bgrey rounded-lg">
 		{#each tripCollection as collection}
-			<Accodion open={true}>
+			<Accodion open={false}>
 				<span slot="head">Trip {collection.id} </span>
 				<div slot="details">
 					<table class="w-full">
-						<tr>
-							<td>Name</td>
+						<tr class="text-lg">
+							<td class=" w-2/3">Name</td>
 							<td>Weight</td>
-							<td>Action</td>
+							<td class=" text-end">Action</td>
 						</tr>
 						{#each collection.gifts as p}
-							<tr>
+							<tr class="border-b-[0.5px] border-bgrey ">
 								<td>{p.name}</td>
 								<td>{p.weight}</td>
-								<td
+								<td class="flex justify-end"
 									><button
 										on:click={() => {
 											$children.unshift({ name: p.name, weight: p.weight });
@@ -164,3 +166,10 @@
 		{/each}
 	</div>
 </div>
+
+<style>
+	td{
+		@apply px-1 py-2
+	}
+
+</style>
