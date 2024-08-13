@@ -118,7 +118,7 @@
 				<td class="font-bold">Weight</td>
 			</tr>
 			{#each $children as child, i}
-				<tr class="border-t-[0.5px] border-bgrey">
+				<tr class="border-b-[0.5px] border-bgrey">
 					<td class=" w-2/4">{child.name}</td>
 					<td class=" w-1/4">{child.weight}</td>
 					<td class="w-1/4 font-bold text-white"
@@ -136,8 +136,9 @@
 	<!-- accordian -->
 	<div class="col-span-6 border-1 p-5 border-bgrey rounded-lg">
 		{#each tripCollection as collection}
-			<Accodion open={false}>
+			<Accodion open={true}>
 				<span slot="head">Trip {collection.id} </span>
+				<span slot="total">Total {collection.gifts.reduce((accu,curr)=> accu + curr.weight , 0).toFixed(2)} Kg</span>
 				<div slot="details">
 					<table class="w-full">
 						<tr class="text-lg">
