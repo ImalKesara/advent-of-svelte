@@ -11,6 +11,9 @@
 	let tripId: number = 1;
 	let index: number = 0;
 	let filterName: string = '';
+	let perRowspage: number = 10;
+	let filterChild: any[] = [];
+	let totalPages: number;
 
 	let tripCollection: Trips[] = [
 		//index is 0
@@ -51,11 +54,17 @@
 	};
 
 	//for table
-	$: filterChild = $children.filter((child)=>{
-		if(child.name.toLowerCase().includes(filterName)){
-			return child.name;
-		}
-	}).slice(0,10);	
+	$: {
+		totalPages = Math.ceil($children.length / perRowspage);
+		console.log('Total pages', totalPages);
+		filterChild = $children
+			.filter((child) => {
+				if (child.name.toLowerCase().includes(filterName)) {
+					return child.name;
+				}
+			})
+			.slice(0, 10);
+	}
 
 	//for accordion
 	$: fillerArr = tripCollection[index].gifts.filter((info) => {
@@ -144,11 +153,11 @@
 				</tr>
 			{/each}
 		</table>
-		<div class="grid grid-cols-4 justify-items-center  mt-5">
+		<div class="mt-5 grid grid-cols-4 justify-items-center">
 			<div>Total child(s) : {$children.length}</div>
 			<div>Rows per page</div>
 			<div>
-				<p>page {1} of {10}</p>
+				<p>page {1} of {totalPages}</p>
 			</div>
 			<div>
 				<button><Leftarrow /></button>

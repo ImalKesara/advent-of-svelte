@@ -15,8 +15,8 @@
 	const days = [
 		{ day: 1, status: 'Completed', link: './day1' },
 		{ day: 2, status: 'Completed', link: './day2' },
-		{ day: 3, status: 'Ongoing', link: './day3' },
-		{ day: 4, status: 'Pending', link: './day4' },
+		{ day: 3, status: 'Completed', link: './day3' },
+		{ day: 4, status: 'Ongoing', link: './day4' },
 		{ day: 5, status: 'Pending', link: './day5' },
 		{ day: 6, status: 'Pending', link: './day6' },
 		{ day: 7, status: 'Pending', link: './day7' },
