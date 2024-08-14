@@ -2,12 +2,15 @@
 	import Weight from '$lib/components/Icon/day Three icons/Weight.svelte';
 	import { children } from '$lib/stores/daythreeStore';
 	import Add from '../Icon/day One icons/Add.svelte';
+	import Leftarrow from '../Icon/day One icons/Leftarrow.svelte';
+	import Rightarrow from '../Icon/day One icons/Rightarrow.svelte';
 	import DeleteThree from '../Icon/day Three icons/DeleteThree.svelte';
 	import Accodion from './Accodion.svelte';
 
 	// CreateTrip svelte
 	let tripId: number = 1;
 	let index: number = 0;
+	let filterName: string = '';
 
 	let tripCollection: Trips[] = [
 		//index is 0
@@ -20,15 +23,18 @@
 	const createTrip = () => {
 		tripId++;
 		tripCollection = [...tripCollection, { id: tripId, gifts: [] }]; // [{ name: 'kesara', weight: 55 }]
-		console.log(tripCollection);
 	};
 
 	const addChildren = (name: string, weight: number) => {
-		tripCollection[index].gifts.push({ name: name, weight: weight });
-		tripCollection = tripCollection;
-		$children = $children.filter((child) => child.name !== name);
-		console.log(fillerArr);
-		console.log($children);
+		let total = tripCollection[index].gifts.reduce((accu, curr) => accu + curr.weight, 0);
+		if (total < 100) {
+			tripCollection[index].gifts.push({ name: name, weight: weight });
+			tripCollection = tripCollection;
+			$children = $children.filter((child) => child.name !== name);
+			console.log(total);
+		} else {
+			return;
+		}
 	};
 
 	const delChildren = (name: string) => {
@@ -44,11 +50,17 @@
 		fillerArr = fillerArr.filter((delName) => delName.name !== name);
 	};
 
+	//for table
+	$: filterChild = $children.filter((child)=>{
+		if(child.name.toLowerCase().includes(filterName)){
+			return child.name;
+		}
+	}).slice(0,10);	
+
+	//for accordion
 	$: fillerArr = tripCollection[index].gifts.filter((info) => {
 		return { name: info.name, weight: info.weight };
 	});
-
-	$: console.log(tripCollection);
 </script>
 
 <div class="m-auto grid max-w-7xl grid-cols-2 gap-5 p-2 md:grid-cols-12">
@@ -111,13 +123,14 @@
 			type="text"
 			placeholder="Filter name..."
 			class="w-full rounded-full border-1 border-bgrey bg-transparent px-4 py-3 outline-none"
+			bind:value={filterName}
 		/>
 		<table class="w-full">
 			<tr class="text-lg">
 				<td class="font-bold">Name</td>
 				<td class="font-bold">Weight</td>
 			</tr>
-			{#each $children as child, i}
+			{#each filterChild as child}
 				<tr class="border-b-[0.5px] border-bgrey">
 					<td class=" w-2/4">{child.name}</td>
 					<td class=" w-1/4">{child.weight}</td>
@@ -131,14 +144,27 @@
 				</tr>
 			{/each}
 		</table>
+		<div class="grid grid-cols-4 justify-items-center  mt-5">
+			<div>Total child(s) : {$children.length}</div>
+			<div>Rows per page</div>
+			<div>
+				<p>page {1} of {10}</p>
+			</div>
+			<div>
+				<button><Leftarrow /></button>
+				<button><Rightarrow /></button>
+			</div>
+		</div>
 	</div>
 
 	<!-- accordian -->
-	<div class="col-span-6 border-1 p-5 border-bgrey rounded-lg">
+	<div class="col-span-6 rounded-lg border-1 border-bgrey p-5">
 		{#each tripCollection as collection}
 			<Accodion open={true}>
 				<span slot="head">Trip {collection.id} </span>
-				<span slot="total">Total {collection.gifts.reduce((accu,curr)=> accu + curr.weight , 0).toFixed(2)} Kg</span>
+				<span slot="total"
+					>Total {collection.gifts.reduce((accu, curr) => accu + curr.weight, 0).toFixed(2)} Kg</span
+				>
 				<div slot="details">
 					<table class="w-full">
 						<tr class="text-lg">
@@ -147,7 +173,7 @@
 							<td class=" text-end">Action</td>
 						</tr>
 						{#each collection.gifts as p}
-							<tr class="border-b-[0.5px] border-bgrey ">
+							<tr class="border-b-[0.5px] border-bgrey">
 								<td>{p.name}</td>
 								<td>{p.weight}</td>
 								<td class="flex justify-end"
@@ -169,8 +195,7 @@
 </div>
 
 <style>
-	td{
-		@apply px-1 py-2
+	td {
+		@apply px-1 py-2;
 	}
-
 </style>
