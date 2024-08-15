@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Weight from '$lib/components/Icon/day Three icons/Weight.svelte';
 	import { children } from '$lib/stores/daythreeStore';
+	import { avgTrips, totalWeight } from '$lib/utils/dayThree/dayThree';
 	import Add from '../Icon/day One icons/Add.svelte';
 	import Leftarrow from '../Icon/day One icons/Leftarrow.svelte';
 	import Rightarrow from '../Icon/day One icons/Rightarrow.svelte';
@@ -18,10 +19,11 @@
 	let rear: number = 10;
 	let pageNumber: number = 1;
 	let visibility: boolean = false;
+	let OverrallWeight: number = 0;
 
 	let tripCollection: Trips[] = [
 		{
-			id: 1, //trip === 1
+			id: 1,
 			gifts: []
 		}
 	];
@@ -32,14 +34,11 @@
 	};
 
 	const addChildren = (name: string, weight: number) => {
-		let total = tripCollection[index].gifts.reduce((accu, curr) => accu + curr.weight, 0);
-		if (total < 100) {
+		OverrallWeight = tripCollection[index].gifts.reduce((accu, curr) => accu + curr.weight, 0);
+		if (OverrallWeight + weight < 100) {
 			tripCollection[index].gifts.push({ name: name, weight: weight });
 			tripCollection = tripCollection;
 			$children = $children.filter((child) => child.name !== name);
-			console.log(total);
-		} else {
-			return;
 		}
 	};
 
@@ -72,6 +71,21 @@
 		}
 	};
 
+	const solvingSystem = () => {
+		let totalweight: number = 0;
+		for (let i = 0; i < avgTrips(totalWeight($children)) - 1; i++) {
+			tripId++;
+			tripCollection = [...tripCollection, { id: tripId, gifts: [] }];
+			const weight = totalWeight($children);
+			for (const child of $children) {
+				totalweight = totalweight + child.weight;
+				console.log(totalweight);
+				if (totalweight >= 100)
+					tripCollection[i].gifts.push({ name: child.name, weight: child.weight });
+			}
+		}
+	};
+
 	//for table
 	$: {
 		totalPages = Math.ceil($children.length / perRowspage);
@@ -91,25 +105,31 @@
 	});
 </script>
 
-<div class="m-auto grid max-w-7xl grid-cols-2 gap-5 p-2 md:grid-cols-12 justify-items-stretch">
+<div class="m-auto grid max-w-7xl grid-cols-2 justify-items-stretch gap-5 p-2 md:grid-cols-12">
 	<div class="col-span-3">
-		<div class="rounded-lg bg-bgrey px-5 py-10 grid gap-y-1">
+		<div class="grid gap-y-1 rounded-lg bg-bgrey px-5 py-10">
 			<button class="w-full rounded-lg bg-greenC px-2 py-3" on:click={createTrip}
 				>Create Trip</button
 			>
 			<p class="text-center">
-				<select name="" id="" class="w-full px-2 py-3 rounded-lg bg-transparent border-1 border-gray-600">
+				<select
+					name=""
+					id=""
+					class="w-full rounded-lg border-1 border-gray-600 bg-transparent px-2 py-3"
+				>
 					<option value="">Trip 1</option>
 				</select>
 			</p>
-			<button class="w-full rounded-lg bg-slate-500 px-2 py-3">Solve it System !!!</button>
+			<button class="w-full rounded-lg bg-slate-500 px-2 py-3" on:click={solvingSystem}
+				>Solve it System !!!</button
+			>
 		</div>
 	</div>
 	<div class="col-span-9">
 		<div class="grid grid-cols-3 gap-x-5 gap-y-3 rounded-lg">
 			<!-- repeatition part -->
 			{#each tripCollection as trip}
-				<div class="rounded-lg bg-bgrey px-4 py-7 border-1">
+				<div class="rounded-lg border-1 bg-bgrey px-4 py-7">
 					<div class="flex items-center justify-between">
 						<p>Trip {trip.id}</p>
 						<Weight />
@@ -118,7 +138,7 @@
 						<p><span class="text-3xl"> {trip.gifts.length} </span>Child(s)</p>
 						<p class="text-sm leading-5">
 							Weight : <b>
-								{trip.gifts.reduce((accur, curr) => accur + curr.weight, 0).toFixed(2)}
+								{OverrallWeight.toFixed(2)}
 							</b>Kg
 						</p>
 					</div>
@@ -127,11 +147,6 @@
 							class="w-full rounded-full bg-orange-500 px-2 py-3"
 							on:click={() => {
 								index = tripCollection.findIndex((acc) => acc.id === trip.id);
-								if(trip.id === (index + 1)){
-									visibility = !visibility
-								}else{
-									console.log('false')
-								}
 							}}>Update</button
 						>
 						<button
@@ -197,9 +212,7 @@
 		{#each tripCollection as collection}
 			<Accodion open={true}>
 				<span slot="head">Trip {collection.id} </span>
-				<span slot="total"
-					>Total {collection.gifts.reduce((accu, curr) => accu + curr.weight, 0).toFixed(2)} Kg</span
-				>
+				<span slot="total">Total {OverrallWeight.toFixed(2)} Kg</span>
 				<div slot="details">
 					<table class="w-full">
 						<tr class="text-lg">
