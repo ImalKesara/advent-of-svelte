@@ -14,6 +14,10 @@
 	let perRowspage: number = 10;
 	let filterChild: any[] = [];
 	let totalPages: number;
+	let front: number = 0;
+	let rear: number = 10;
+	let pageNumber: number = 1;
+	let visibility: boolean = false;
 
 	let tripCollection: Trips[] = [
 		//index is 0
@@ -53,6 +57,24 @@
 		fillerArr = fillerArr.filter((delName) => delName.name !== name);
 	};
 
+	const increase = () => {
+		if (pageNumber < 10) {
+			pageNumber++;
+			front += 10;
+			rear += 10;
+		}
+	};
+
+	const decrease = () => {
+		if (pageNumber > 1) {
+			pageNumber--;
+			front -= 10;
+			rear -= 10;
+		}
+	};
+
+	
+
 	//for table
 	$: {
 		totalPages = Math.ceil($children.length / perRowspage);
@@ -63,7 +85,7 @@
 					return child.name;
 				}
 			})
-			.slice(0, 10);
+			.slice(front, rear);
 	}
 
 	//for accordion
@@ -86,7 +108,7 @@
 		<div class="grid grid-cols-3 gap-x-5 gap-y-3 rounded-lg">
 			<!-- repeatition part -->
 			{#each tripCollection as trip}
-				<div class=" rounded-lg bg-bgrey px-4 py-7">
+				<div class="rounded-lg bg-bgrey px-4 py-7 border-1{visibility ? ' border-orange-500' : ''}">
 					<div class="flex items-center justify-between">
 						<p>Trip {trip.id}</p>
 						<Weight />
@@ -103,8 +125,12 @@
 						<button
 							class="w-full rounded-full bg-orange-500 px-2 py-3"
 							on:click={() => {
-								console.log(trip.id);
 								index = tripCollection.findIndex((acc) => acc.id === trip.id);
+								tripCollection.forEach((collection) => {
+									if (collection.id > index) {
+										visibility = !visibility;
+									}
+								});
 							}}>Update</button
 						>
 						<button
@@ -153,15 +179,14 @@
 				</tr>
 			{/each}
 		</table>
-		<div class="mt-5 grid grid-cols-4 justify-items-center">
+		<div class="mt-5 grid grid-cols-3 justify-items-center">
 			<div>Total child(s) : {$children.length}</div>
-			<div>Rows per page</div>
 			<div>
-				<p>page {1} of {totalPages}</p>
+				<p>page {pageNumber} of {totalPages}</p>
 			</div>
 			<div>
-				<button><Leftarrow /></button>
-				<button><Rightarrow /></button>
+				<button on:click={decrease}><Leftarrow /></button>
+				<button on:click={increase}><Rightarrow /></button>
 			</div>
 		</div>
 	</div>
