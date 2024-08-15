@@ -20,7 +20,6 @@
 	let visibility: boolean = false;
 
 	let tripCollection: Trips[] = [
-		//index is 0
 		{
 			id: 1, //trip === 1
 			gifts: []
@@ -73,8 +72,6 @@
 		}
 	};
 
-	
-
 	//for table
 	$: {
 		totalPages = Math.ceil($children.length / perRowspage);
@@ -94,13 +91,17 @@
 	});
 </script>
 
-<div class="m-auto grid max-w-7xl grid-cols-2 gap-5 p-2 md:grid-cols-12">
-	<div class=" col-span-3">
-		<div class=" rounded-lg bg-bgrey px-5 py-10">
+<div class="m-auto grid max-w-7xl grid-cols-2 gap-5 p-2 md:grid-cols-12 justify-items-stretch">
+	<div class="col-span-3">
+		<div class="rounded-lg bg-bgrey px-5 py-10 grid gap-y-1">
 			<button class="w-full rounded-lg bg-greenC px-2 py-3" on:click={createTrip}
 				>Create Trip</button
 			>
-			<p class="text-center">Trip</p>
+			<p class="text-center">
+				<select name="" id="" class="w-full px-2 py-3 rounded-lg bg-transparent border-1 border-gray-600">
+					<option value="">Trip 1</option>
+				</select>
+			</p>
 			<button class="w-full rounded-lg bg-slate-500 px-2 py-3">Solve it System !!!</button>
 		</div>
 	</div>
@@ -108,7 +109,7 @@
 		<div class="grid grid-cols-3 gap-x-5 gap-y-3 rounded-lg">
 			<!-- repeatition part -->
 			{#each tripCollection as trip}
-				<div class="rounded-lg bg-bgrey px-4 py-7 border-1{visibility ? ' border-orange-500' : ''}">
+				<div class="rounded-lg bg-bgrey px-4 py-7 border-1">
 					<div class="flex items-center justify-between">
 						<p>Trip {trip.id}</p>
 						<Weight />
@@ -126,11 +127,11 @@
 							class="w-full rounded-full bg-orange-500 px-2 py-3"
 							on:click={() => {
 								index = tripCollection.findIndex((acc) => acc.id === trip.id);
-								tripCollection.forEach((collection) => {
-									if (collection.id > index) {
-										visibility = !visibility;
-									}
-								});
+								if(trip.id === (index + 1)){
+									visibility = !visibility
+								}else{
+									console.log('false')
+								}
 							}}>Update</button
 						>
 						<button
