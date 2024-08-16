@@ -76,19 +76,22 @@
 		tripCollection = [];
 		createtrip.set(0);
 		let totalweight: number = 0;
-		let temp: number = 0;
-		for (let i = 0; i < avgTrips(totalWeight($children)) - 1; i++) {
+		let weight = totalWeight($children);
+		for (let i = 0; i < avgTrips(totalWeight($children)); i++) {
 			createtrip.update((n) => n + 1);
 			tripId++;
 			tripCollection = [...tripCollection, { id: tripId, gifts: [] }];
 			for (const child of $children) {
-				if (totalweight <= 100) {
+				totalweight += child.weight;
+				//      0       <= 582.26
+				if (totalweight <= weight / 100) {
 					tripCollection[i].gifts.push({ name: child.name, weight: child.weight });
-					temp = totalweight;
-					totalweight = 0;
+					weight - totalweight;
 				}
 			}
 		}
+		console.log(totalweight);
+		console.log(weight);
 	};
 
 	//for table
@@ -143,7 +146,7 @@
 						<p><span class="text-3xl"> {trip.gifts.length} </span>Child(s)</p>
 						<p class="text-sm leading-5">
 							Weight : <b>
-								{OverrallWeight.toFixed(2)}
+								{trip.gifts.reduce((accur, curr) => accur + curr.weight, 0).toFixed(2)}
 							</b>Kg
 						</p>
 					</div>
@@ -217,7 +220,7 @@
 		{#each tripCollection as collection}
 			<Accodion open={true}>
 				<span slot="head">Trip {collection.id} </span>
-				<span slot="total">Total {OverrallWeight.toFixed(2)} Kg</span>
+				<span slot="total">Total {collection.gifts.reduce((accur, curr) => accur + curr.weight, 0).toFixed(2)} Kg</span>
 				<div slot="details">
 					<table class="w-full">
 						<tr class="text-lg">
