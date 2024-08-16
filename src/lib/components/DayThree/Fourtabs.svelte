@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { children } from '$lib/stores/daythreeStore.ts';
+	import { children,createtrip } from '$lib/stores/daythreeStore.ts';
 	import Trip from '$lib/components/Icon/day Three icons/Trip.svelte';
 	import TotalChildren from '$lib/components/Icon/day Three icons/TotalChildren.svelte';
 	import CreatedTrip from '$lib/components/Icon/day Three icons/CreatedTrip.svelte';
@@ -59,7 +59,7 @@
 			<CreatedTrip />
 		</div>
 		<div class="col-span-3">
-			<span class="text-3xl"><b>{1} </b></span>
+			<span class="text-3xl"><b>{$createtrip} </b></span>
 			<span class=" block text-sm text-gray-500">Trips created by you</span>
 		</div>
 	</div>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Weight from '$lib/components/Icon/day Three icons/Weight.svelte';
-	import { children } from '$lib/stores/daythreeStore';
+	import { children, createtrip } from '$lib/stores/daythreeStore';
 	import { avgTrips, totalWeight } from '$lib/utils/dayThree/dayThree';
 	import Add from '../Icon/day One icons/Add.svelte';
 	import Leftarrow from '../Icon/day One icons/Leftarrow.svelte';
@@ -29,6 +29,7 @@
 	];
 
 	const createTrip = () => {
+		createtrip.update((n) => n + 1);
 		tripId++;
 		tripCollection = [...tripCollection, { id: tripId, gifts: [] }]; // [{ name: 'kesara', weight: 55 }]
 	};
@@ -73,15 +74,16 @@
 
 	const solvingSystem = () => {
 		let totalweight: number = 0;
+		let temp: number = 0;
 		for (let i = 0; i < avgTrips(totalWeight($children)) - 1; i++) {
 			tripId++;
 			tripCollection = [...tripCollection, { id: tripId, gifts: [] }];
-			const weight = totalWeight($children);
 			for (const child of $children) {
-				totalweight = totalweight + child.weight;
-				console.log(totalweight);
-				if (totalweight >= 100)
+				if (totalweight <= 100) {
 					tripCollection[i].gifts.push({ name: child.name, weight: child.weight });
+					temp = totalweight;
+					totalweight = 0;
+				}
 			}
 		}
 	};
