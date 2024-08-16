@@ -73,9 +73,12 @@
 	};
 
 	const solvingSystem = () => {
+		tripCollection = [];
+		createtrip.set(0);
 		let totalweight: number = 0;
 		let temp: number = 0;
 		for (let i = 0; i < avgTrips(totalWeight($children)) - 1; i++) {
+			createtrip.update((n) => n + 1);
 			tripId++;
 			tripCollection = [...tripCollection, { id: tripId, gifts: [] }];
 			for (const child of $children) {
