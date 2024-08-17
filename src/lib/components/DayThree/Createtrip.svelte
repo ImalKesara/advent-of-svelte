@@ -75,23 +75,34 @@
 	const solvingSystem = () => {
 		tripCollection = [];
 		createtrip.set(0);
+		const totalWeightChildren = totalWeight($children);
+		const tripsRequired = avgTrips(totalWeightChildren);
+		const weightPerTrip = totalWeightChildren / tripsRequired;
 		let totalweight: number = 0;
-		let weight = totalWeight($children);
-		for (let i = 0; i < avgTrips(totalWeight($children)); i++) {
-			createtrip.update((n) => n + 1);
-			tripId++;
-			tripCollection = [...tripCollection, { id: tripId, gifts: [] }];
-			for (const child of $children) {
+
+		let currentCollection: Trips = {
+			id: tripId,
+			gifts: []
+		};
+
+		for (const child of $children) {
+			if (totalweight + child.weight <= 100) {
+				currentCollection.gifts.push({ name: child.name, weight: child.weight });
 				totalweight += child.weight;
-				//      0       <= 582.26
-				if (totalweight <= weight / 100) {
-					tripCollection[i].gifts.push({ name: child.name, weight: child.weight });
-					weight - totalweight;
-				}
+			} else {
+				tripCollection = [...tripCollection, currentCollection];
+				createtrip.update((n) => n + 1);
+				totalweight = child.weight;
+				tripId++;
+				currentCollection = {
+					id: tripId,
+					gifts: [{ name: child.name, weight: child.weight }]
+				};
 			}
 		}
-		console.log(totalweight);
-		console.log(weight);
+		if (currentCollection.gifts.length > 0) {
+			tripCollection = [...tripCollection, currentCollection];
+		}
 	};
 
 	//for table
@@ -115,7 +126,7 @@
 
 <div class="m-auto grid max-w-7xl grid-cols-2 justify-items-stretch gap-5 p-2 md:grid-cols-12">
 	<div class="col-span-3">
-		<div class="grid gap-y-1 rounded-lg bg-bgrey px-5 py-10">
+		<div class="grid gap-y-1 rounded-lg bg-bgrey px-5 py-6">
 			<button class="w-full rounded-lg bg-greenC px-2 py-3" on:click={createTrip}
 				>Create Trip</button
 			>
@@ -137,7 +148,7 @@
 		<div class="grid grid-cols-3 gap-x-5 gap-y-3 rounded-lg">
 			<!-- repeatition part -->
 			{#each tripCollection as trip}
-				<div class="rounded-lg border-1 bg-bgrey px-4 py-7">
+				<div class="rounded-lg bg-bgrey px-4 py-7">
 					<div class="flex items-center justify-between">
 						<p>Trip {trip.id}</p>
 						<Weight />
@@ -218,9 +229,11 @@
 	<!-- accordian -->
 	<div class="col-span-6 rounded-lg border-1 border-bgrey p-5">
 		{#each tripCollection as collection}
-			<Accodion open={true}>
+			<Accodion open={false}>
 				<span slot="head">Trip {collection.id} </span>
-				<span slot="total">Total {collection.gifts.reduce((accur, curr) => accur + curr.weight, 0).toFixed(2)} Kg</span>
+				<span slot="total"
+					>Total {collection.gifts.reduce((accur, curr) => accur + curr.weight, 0).toFixed(2)} Kg</span
+				>
 				<div slot="details">
 					<table class="w-full">
 						<tr class="text-lg">
