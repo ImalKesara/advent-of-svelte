@@ -154,7 +154,7 @@
 						<Weight />
 					</div>
 					<div>
-						<p><span class="text-3xl"> {trip.gifts.length} </span>Child(s)</p>
+						<p><span class="text-3xl"> {trip.gifts.length} </span>Gifts</p>
 						<p class="text-sm leading-5">
 							Weight : <b>
 								{trip.gifts.reduce((accur, curr) => accur + curr.weight, 0).toFixed(2)}
